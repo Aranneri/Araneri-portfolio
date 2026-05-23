@@ -1,0 +1,42 @@
+@theme {
+  --color-brand-primary: #2d4f3a;
+  --color-brand-secondary: #52796f;
+  --color-brand-brown: #6b4f3a;
+  --color-brand-soft-brown: #a67c52;
+  --color-brand-accent: #d4a373;
+  --color-brand-bg: #1b2a21;
+  --color-brand-text: #f4f1ea;
+  --color-brand-glass: rgba(82, 121, 111, 0.18);
+  --color-brand-glow: rgba(212, 163, 115, 0.25);
+
+  --color-palm-950: #1b2a21;
+  --color-palm-900: #2d4f3a;
+  --color-palm-800: #52796f;
+  --color-palm-700: #52796f;
+  --color-palm-600: #52796f;
+  --color-forest-900: #1b2a21;
+  --color-forest-800: #2d4f3a;
+  --color-earth-700: #6b4f3a;
+  --color-earth-600: #6b4f3a;
+  --color-earth-500: #a67c52;
+  --color-sand-200: #f4f1ea;
+  --color-sand-300: #a67c52;
+  --color-gold-500: #d4a373;
+  --color-emerald-500: #52796f;
+  --color-butterfly-500: #a67c52;
+  --color-amber-500: #d4a373;
+
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.25);
+  --font-serif: "Playfair Display", "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Manrope", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-logo: "Cinzel Decorative", serif;
+
+  /* Additional tokens mapped for reference layout matching */
+  --font-brush: "Water Brush", "Caveat Brush", cursive;
+}
+
+:root {
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}

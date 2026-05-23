@@ -1,0 +1,6 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="40" fill="#10241B"/>
+  <rect x="80" y="80" width="1040" height="740" rx="32" fill="#163325" stroke="#D9C7A0" stroke-opacity="0.2"/>
+  <text x="120" y="170" fill="#D9C7A0" font-family="serif" font-size="48">Palm Roots</text>
+  <text x="120" y="230" fill="#D9C7A0" font-family="sans-serif" font-size="20" opacity="0.7">Placeholder image</text>
+</svg>

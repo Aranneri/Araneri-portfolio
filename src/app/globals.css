@@ -1,0 +1,365 @@
+@import url("https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Water+Brush&family=Caveat+Brush&display=swap");
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg-primary: #0f2a1c; /* Restored to your original rich green theme color */
+    --bg-secondary: #1b2a21;
+    --accent: #d4a373;
+    --text-primary: #f4f1ea;
+    --text-secondary: rgba(244, 241, 234, 0.7);
+  }
+
+  * {
+    border-color: color-mix(in srgb, var(--text-primary) 12%, transparent);
+  }
+
+  body {
+    @apply min-h-screen font-sans antialiased overflow-x-hidden;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  header .logo-text-animated {
+    font-family: var(--font-water-brush), "Water Brush", "Cinzel Decorative", cursive, serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.04em !important;
+    background-image: linear-gradient(to right, #f8e5bb, #f4f1ea, #75b58f) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  header a:hover .logo-text-animated {
+    background-image: linear-gradient(to right, #75b58f, #f4f1ea, #f8e5bb) !important;
+  }
+}
+
+@layer utilities {
+  /* Dynamic global keyframe injection to prevent React engine sanitization drops */
+  @keyframes globalPalmyraTrunk {
+    0% {
+      transform: rotate(-0.8deg);
+    }
+    100% {
+      transform: rotate(1.4deg);
+    }
+  }
+
+  @keyframes globalPalmyraCrown {
+    0% {
+      transform: rotate(-2.5deg) translate(-4px, 1px);
+    }
+    100% {
+      transform: rotate(3.5deg) translate(5px, -1px);
+    }
+  }
+
+  @keyframes globalPalmyraFrond {
+    0% {
+      transform: rotate(-4deg) skewX(-1deg);
+    }
+    100% {
+      transform: rotate(5deg) skewX(2deg);
+    }
+  }
+
+  /* Tree node mapping identifiers */
+  .force-trunk-sway {
+    transform-origin: 250px 900px !important;
+    animation: globalPalmyraTrunk 8.5s ease-in-out infinite alternate !important;
+  }
+
+  .force-crown-sway {
+    transform-origin: 325px 290px !important;
+    animation: globalPalmyraCrown 5.8s ease-in-out infinite alternate !important;
+  }
+
+  .force-frond-sway {
+    transform-origin: center !important;
+    animation: globalPalmyraFrond 3.8s ease-in-out infinite alternate !important;
+  }
+
+  /* Title calligraphic layout match */
+  .painted-title-exact {
+    font-family: var(--font-water-brush), "Water Brush", "Caveat Brush", cursive !important;
+    background-image: linear-gradient(135deg, #fef9e7 0%, #e9ce9b 30%, #fbf3db 65%, #c29e63 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+    -webkit-text-stroke: 0.5px rgba(254, 249, 231, 0.25) !important;
+    display: inline-block;
+  }
+
+  /* -------------------------------------------------------------
+     Warm Sand Light Theme Nesting for Home Route
+  ------------------------------------------------------------- */
+  body:has([data-theme="home"]) {
+    color-scheme: light !important;
+    --bg-primary: #ebdcc4;
+    --bg-secondary: #f3e8d6;
+    --accent: #424b33;
+    --text-primary: #2c351e;
+    --text-secondary: rgba(44, 53, 30, 0.7);
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* Remove layout constraints on home theme pages to allow full bleed edge-to-edge clouds and roots */
+  body:has([data-theme="home"]) #main-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body:has([data-theme="home"]) .painted-title-exact {
+    background-image: linear-gradient(135deg, #0b2214 0%, #0d2a19 40%, #153c25 80%, #1e5234 100%) !important;
+    -webkit-text-stroke: 1px #0b2214 !important;
+    filter: drop-shadow(0 2px 4px rgba(11, 34, 20, 0.2)) drop-shadow(0 4px 8px rgba(11, 34, 20, 0.15)) !important;
+  }
+
+  /* Header & Navbar global styles (aligned to homepage branding) */
+  header .logo-text-animated {
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    color: #1b4d22 !important;
+    -webkit-text-fill-color: #1b4d22 !important;
+    text-shadow: 0 0 6px rgba(212, 163, 115, 0.45), 0 0 12px rgba(194, 158, 99, 0.25) !important;
+  }
+
+  header a:hover .logo-text-animated {
+    color: #113617 !important;
+    -webkit-text-fill-color: #113617 !important;
+    text-shadow: 0 0 10px rgba(212, 163, 115, 0.7), 0 0 18px rgba(194, 158, 99, 0.4) !important;
+  }
+
+  header .nav-link .nav-link-text {
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    color: inherit !important;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  header .magnetic-link div {
+    background-color: #f3e8d6 !important;
+    border-color: rgba(66, 75, 51, 0.4) !important;
+  }
+
+  header .magnetic-link div svg {
+    color: #424b33 !important;
+  }
+
+  header nav a {
+    color: #6e4f3a !important;
+  }
+
+  header nav a:hover {
+    color: #1b4d22 !important;
+  }
+
+  #nav-get-involved-btn {
+    background-color: #424b33 !important;
+    color: #ebdcc4 !important;
+    border-color: rgba(44, 53, 30, 0.15) !important;
+  }
+
+  #nav-get-involved-btn:hover {
+    background-color: #2c351e !important;
+  }
+
+  header button {
+    color: #424b33 !important;
+  }
+
+
+
+  /* Section Header light theme overrides */
+  body:has([data-theme="home"]) [data-section-heading] p.text-emerald-500 {
+    color: #424b33 !important;
+  }
+
+  body:has([data-theme="home"]) [data-section-heading] p {
+    color: rgba(44, 53, 30, 0.75) !important;
+  }
+
+  body:has([data-theme="home"]) h2 {
+    color: #1b4d22 !important;
+  }
+
+  body:has([data-theme="home"]) h3 {
+    color: #1b4d22 !important;
+    transition: color 0.3s ease !important;
+  }
+
+  body:has([data-theme="home"]) .group:hover h3,
+  body:has([data-theme="home"]) article:hover h3 {
+    color: #113617 !important;
+  }
+
+  /* Center-outward expanding line with a tiny Palmyra tree */
+  .nav-link:hover .nav-hover-line-left,
+  .nav-link:hover .nav-hover-line-right {
+    width: calc(50% - 4px) !important;
+  }
+
+  .nav-link:hover .nav-hover-dot {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    box-shadow: 0 0 8px currentColor !important;
+  }
+
+  /* Premium Glassmorphic Navbar styles */
+  .glass-panel {
+    backdrop-filter: blur(18px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+    box-shadow: 0 10px 30px -10px rgba(66, 75, 51, 0.08) !important;
+  }
+
+  /* Gentle Background Sway Animation for Decorative Palm Watermarks */
+  @keyframes backgroundSway {
+    0% {
+      transform: rotate(-1.2deg) translate(0px, 0px);
+    }
+    50% {
+      transform: rotate(1.2deg) translate(3px, -4px);
+    }
+    100% {
+      transform: rotate(-1.2deg) translate(0px, 0px);
+    }
+  }
+
+  .animate-gentle-sway {
+    animation: backgroundSway 16s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+
+  .gradient-title-green {
+    background-image: linear-gradient(to right, #0b2515 0%, #2e7d32 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    display: inline-block;
+  }
+
+  /* Sand Theme Card Overrides */
+  body:has([data-theme="home"]) [data-section-card] {
+    background: linear-gradient(to bottom right, #f3e8d6, #ebdcc4) !important;
+    border-color: rgba(66, 75, 51, 0.15) !important;
+    box-shadow: 0 10px 25px rgba(44, 53, 30, 0.04) !important;
+    color: #2c351e !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  body:has([data-theme="home"]) [data-section-card]:hover {
+    background: linear-gradient(to bottom right, #ebdcc4, #f3e8d6) !important;
+    border-color: rgba(66, 75, 51, 0.42) !important;
+    box-shadow: 0 24px 48px -12px rgba(44, 53, 30, 0.14), 0 0 18px rgba(66, 75, 51, 0.05) !important;
+    transform: translateY(-8px) scale(1.015) !important;
+  }
+
+  body:has([data-theme="home"]) [data-section-card] h3 {
+    color: #2c351e !important;
+  }
+
+  body:has([data-theme="home"]) [data-section-card]:hover h3 {
+    color: #1b2410 !important;
+  }
+
+  body:has([data-theme="home"]) [data-section-card] p {
+    color: rgba(44, 53, 30, 0.75) !important;
+  }
+
+  body:has([data-theme="home"]) [data-section-card]:hover p {
+    color: rgba(44, 53, 30, 0.9) !important;
+  }
+  
+  body:has([data-theme="home"]) [data-section-card]::after {
+    display: none !important;
+  }
+
+  /* Ghost Button Light Theme Overrides */
+  body:has([data-theme="home"]) .bg-transparent {
+    color: #424b33 !important;
+  }
+  
+  body:has([data-theme="home"]) .bg-transparent:hover {
+    background-color: rgba(66, 75, 51, 0.08) !important;
+    color: #1b2410 !important;
+  }
+
+  /* --- Premium Wind-Blown Leaflet Flutter Animations --- */
+  @keyframes leafletFlutterLeft {
+    0% {
+      transform: rotate(0deg) skewX(0deg);
+    }
+    50% {
+      transform: rotate(-2.2deg) skewX(-1.2deg) translate(-1px, 0.5px);
+    }
+    100% {
+      transform: rotate(0deg) skewX(0deg);
+    }
+  }
+
+  @keyframes leafletFlutterRight {
+    0% {
+      transform: rotate(0deg) skewX(0deg);
+    }
+    50% {
+      transform: rotate(2.8deg) skewX(1.6deg) translate(1px, -0.5px);
+    }
+    100% {
+      transform: rotate(0deg) skewX(0deg);
+    }
+  }
+
+  .leaflet-flutter-left {
+    transform-origin: 200px 350px !important;
+    animation: leafletFlutterLeft 7.5s ease-in-out infinite alternate !important;
+  }
+
+  .leaflet-flutter-right {
+    transform-origin: 200px 350px !important;
+    animation: leafletFlutterRight 6.8s ease-in-out infinite alternate !important;
+  }
+
+  /* --- Spore Float Animations for Margin Pollen Particles --- */
+  @keyframes sporeFloat {
+    0% {
+      transform: translateY(0px) translateX(0px) scale(0.85);
+      opacity: 0.12;
+    }
+    50% {
+      transform: translateY(-50px) translateX(25px) scale(1.2);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-100px) translateX(-5px) scale(0.85);
+      opacity: 0.12;
+    }
+  }
+
+  .animate-spore-slow-1 {
+    animation: sporeFloat 16s ease-in-out infinite !important;
+  }
+  
+  .animate-spore-slow-2 {
+    animation: sporeFloat 20s ease-in-out infinite !important;
+  }
+  
+  .animate-spore-slow-3 {
+    animation: sporeFloat 24s ease-in-out infinite !important;
+  }
+}
+
+
