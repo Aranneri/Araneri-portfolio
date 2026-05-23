@@ -32,21 +32,21 @@ export function BlogFilterGrid({ posts, categories }: BlogFilterGridProps) {
 
   return (
     <div ref={scopeRef} className="space-y-8">
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3 select-none">
         {categories.map((category) => (
-          <Button
+          <button
             key={category}
             type="button"
-            variant={activeCategory === category ? "secondary" : "ghost"}
-            size="sm"
             onClick={() => setActiveCategory(category)}
             className={cn(
-              "rounded-full",
-              activeCategory === category ? "text-palm-950" : "text-sand-200/70",
+              "rounded-full px-5 py-1.8 text-xs font-semibold tracking-wider transition-all duration-300 font-sans shadow-sm border cursor-pointer",
+              activeCategory === category 
+                ? "bg-[#424b33] text-[#ebdcc4] border-transparent hover:bg-[#2c351e]" 
+                : "bg-[#ebdcc4]/30 text-[#424b33] border-[#424b33]/20 hover:bg-[#424b33]/15 hover:border-[#424b33]/30"
             )}
           >
             {category}
-          </Button>
+          </button>
         ))}
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

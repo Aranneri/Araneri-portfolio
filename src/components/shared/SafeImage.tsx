@@ -16,7 +16,7 @@ export function SafeImage({
   ...props
 }: SafeImageProps) {
   const priorityValue = priority ?? false;
-  const resolvedLoading = priorityValue ? undefined : loading ?? "lazy";
+  const resolvedLoading = priorityValue ? undefined : (loading ?? "lazy");
   const loadingProps = resolvedLoading ? { loading: resolvedLoading } : {};
 
   return (

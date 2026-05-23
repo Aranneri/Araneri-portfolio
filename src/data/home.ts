@@ -14,18 +14,15 @@ export const homeHero = {
 export const homeInitiatives: readonly Initiative[] = [
   {
     title: "Root Archives",
-    description:
-      "Mapping the cultural stories embedded in palm-root systems and their guardians.",
+    description: "Mapping the cultural stories embedded in palm-root systems and their guardians.",
   },
   {
     title: "Soil Resonance",
-    description:
-      "Co-creating rituals that reconnect communities with earth rhythms.",
+    description: "Co-creating rituals that reconnect communities with earth rhythms.",
   },
   {
     title: "Water Memory",
-    description:
-      "Documenting the hydrology of palms through immersive storytelling labs.",
+    description: "Documenting the hydrology of palms through immersive storytelling labs.",
   },
 ];
 
@@ -47,16 +44,14 @@ export const homeLaunchPreview = [
 export const homeBlogPreview = [
   {
     title: "The Emerald Dove Flight Path",
-    excerpt:
-      "Tracing the guardian bird that threads together forest canopy and palm hearts.",
+    excerpt: "Tracing the guardian bird that threads together forest canopy and palm hearts.",
     category: "Ecology",
     date: "Apr 18, 2026",
     image: imagePlaceholders.emeraldDove,
   },
   {
     title: "Seedlight Rituals",
-    excerpt:
-      "How palm seeds become ceremonial markers of renewal across coastal villages.",
+    excerpt: "How palm seeds become ceremonial markers of renewal across coastal villages.",
     category: "Culture",
     date: "Mar 02, 2026",
     image: imagePlaceholders.palmSeeds,

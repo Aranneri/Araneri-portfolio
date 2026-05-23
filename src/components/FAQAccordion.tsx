@@ -42,29 +42,27 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
   }, [activeIndex]);
 
   return (
-    <div ref={scopeRef} className="space-y-3">
+    <div ref={scopeRef} className="space-y-4">
       {items.map((item, index) => (
         <div
           key={item.question}
-          className="rounded-[var(--radius-md)] border border-sand-200/15 bg-palm-900/30"
+          className="rounded-2xl border border-[var(--text-primary)]/12 bg-gradient-to-br from-[var(--bg-secondary)]/95 to-[var(--bg-primary)]/95 shadow-sm hover:border-[var(--text-primary)]/25 hover:shadow-[0_8px_30px_rgba(66,75,51,0.03)] transition-all duration-300 overflow-hidden"
           data-section-card
         >
           <h3>
             <button
               type="button"
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-sand-200 hover:text-sand-100"
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-base font-semibold text-[var(--text-primary)] hover:opacity-85 transition-opacity duration-200 font-sans tracking-wide cursor-pointer"
               aria-expanded={activeIndex === index}
               aria-controls={`faq-panel-${index}`}
               id={`faq-trigger-${index}`}
-              onClick={() =>
-                setActiveIndex((current) => (current === index ? null : index))
-              }
+              onClick={() => setActiveIndex((current) => (current === index ? null : index))}
             >
               <span>{item.question}</span>
               <ChevronDown
                 className={cn(
-                  "h-4 w-4 shrink-0 transition-transform duration-200",
-                  activeIndex === index ? "rotate-180" : "rotate-0",
+                  "h-4 w-4 shrink-0 transition-transform duration-300 text-[var(--text-primary)]/60",
+                  activeIndex === index ? "rotate-180 text-[var(--text-primary)]" : "rotate-0",
                 )}
                 aria-hidden="true"
               />
@@ -77,7 +75,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
             id={`faq-panel-${index}`}
             role="region"
             aria-labelledby={`faq-trigger-${index}`}
-            className="h-0 overflow-hidden px-5 text-sm text-sand-200/70"
+            className="h-0 overflow-hidden px-6 text-[15px] text-[var(--text-secondary)] leading-relaxed font-sans"
           >
             <p className="pb-5">{item.answer}</p>
           </div>

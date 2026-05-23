@@ -22,7 +22,10 @@ export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-xl font-semibold transition-colors duration-200 group-hover:text-sand-100", className)}
+      className={cn(
+        "text-xl font-semibold transition-colors duration-200 group-hover:text-sand-100",
+        className,
+      )}
       {...props}
     />
   );

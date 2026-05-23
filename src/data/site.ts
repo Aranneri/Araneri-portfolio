@@ -2,8 +2,7 @@ import type { MediaImage, NavLink, SiteMeta, TimelineItem } from "@/types";
 
 export const siteMeta: SiteMeta = {
   name: "Araneri",
-  description:
-    "A cinematic, nature-inspired storytelling platform rooted in palm-tree wisdom.",
+  description: "A cinematic, nature-inspired storytelling platform rooted in palm-tree wisdom.",
   url: "https://araneri.example",
 };
 
@@ -27,50 +26,50 @@ export const footerLinks: readonly NavLink[] = [
 
 export const imagePlaceholders = {
   palmRoots: {
-    src: "/images/palm-roots.svg",
-    alt: "Palm roots illustration placeholder",
+    src: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2000&auto=format&fit=crop",
+    alt: "An organization team collaborating around a meeting table",
     width: 1200,
     height: 900,
   },
   palmTrunk: {
-    src: "/images/palm-trunk.svg",
-    alt: "Palm trunk illustration placeholder",
+    src: "https://images.unsplash.com/photo-1609137144813-9e1faa9d9f08?q=80&w=1500&auto=format&fit=crop",
+    alt: "Palm tree trunk texture and detail",
     width: 1200,
     height: 900,
   },
   palmLeaves: {
-    src: "/images/palm-leaves.svg",
-    alt: "Palm leaves illustration placeholder",
+    src: "https://images.unsplash.com/photo-1618983081563-430f63602022?q=80&w=1500&auto=format&fit=crop",
+    alt: "Tropical palm leaves background",
     width: 1200,
     height: 900,
   },
   palmSeeds: {
-    src: "/images/palm-seeds.svg",
-    alt: "Palm seeds illustration placeholder",
+    src: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1500&auto=format&fit=crop",
+    alt: "Palm fruits and seeds closeup",
     width: 900,
     height: 700,
   },
   iceApple: {
-    src: "/images/ice-apple.svg",
-    alt: "Ice apple illustration placeholder",
+    src: "https://images.unsplash.com/photo-1599599810694-b5ac4dd33e2d?q=80&w=1500&auto=format&fit=crop",
+    alt: "Tropical fruit in nature",
     width: 900,
     height: 700,
   },
   butterflies: {
-    src: "/images/butterflies.svg",
-    alt: "Butterflies illustration placeholder",
+    src: "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?q=80&w=1500&auto=format&fit=crop",
+    alt: "Butterfly in natural habitat",
     width: 900,
     height: 700,
   },
   emeraldDove: {
-    src: "/images/emerald-dove.svg",
-    alt: "Emerald dove illustration placeholder",
+    src: "https://images.unsplash.com/photo-1444464666175-1642a9651534?q=80&w=1500&auto=format&fit=crop",
+    alt: "Bird in nature - emerald dove",
     width: 900,
     height: 700,
   },
   palmCrafts: {
-    src: "/images/palm-crafts.svg",
-    alt: "Palm leaf crafts illustration placeholder",
+    src: "https://images.unsplash.com/photo-1578500494198-246f612d03b3?q=80&w=1500&auto=format&fit=crop",
+    alt: "Traditional palm leaf crafts and woven products",
     width: 900,
     height: 700,
   },

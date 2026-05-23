@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Water_Brush, Caveat_Brush } from "next/font/google";
 
 import "./globals.css";
 import { siteMeta } from "@/data/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { AnimatedCursorSeeds } from "@/components/animations/AnimatedCursorSeeds";
 import { PageTransitionWrapper } from "@/components/layout/PageTransitionWrapper";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
+
+const waterBrush = Water_Brush({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-water-brush",
+  display: "swap",
+});
+
+const caveatBrush = Caveat_Brush({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-caveat-brush",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -36,9 +50,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${waterBrush.variable} ${caveatBrush.variable}`}>
       <body>
-        <AnimatedCursorSeeds />
         <div className="relative z-10 flex min-h-screen flex-col">
           <a
             href="#main-content"
@@ -47,10 +60,7 @@ export default function RootLayout({
             Skip to content
           </a>
           <Navbar />
-          <main
-            id="main-content"
-            className="mx-auto w-full max-w-6xl flex-1 px-6 pb-16 pt-28"
-          >
+          <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-6 pb-16 pt-28">
             <ErrorBoundary>
               <PageTransitionWrapper>{children}</PageTransitionWrapper>
             </ErrorBoundary>

@@ -6,11 +6,6 @@ interface SkeletonLoaderProps {
 
 export function SkeletonLoader({ className }: SkeletonLoaderProps) {
   return (
-    <div
-      className={cn(
-        "animate-pulse rounded-[var(--radius-md)] bg-sand-200/10",
-        className,
-      )}
-    />
+    <div className={cn("animate-pulse rounded-[var(--radius-md)] bg-sand-200/10", className)} />
   );
 }

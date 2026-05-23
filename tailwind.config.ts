@@ -5,51 +5,59 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          primary: "#2D4F3A",
+          secondary: "#52796F",
+          brown: "#6B4F3A",
+          "soft-brown": "#A67C52",
+          accent: "#D4A373",
+          bg: "#1B2A21",
+          text: "#F4F1EA",
+        },
         palm: {
-          950: "#0b1d16",
-          900: "#0f241b",
-          800: "#163325",
-          700: "#1c3f2e",
-          600: "#245038",
+          950: "#1B2A21", // Background Dark
+          900: "#2D4F3A", // Primary Green
+          800: "#52796F", // Secondary Green
+          700: "#52796F",
+          600: "#52796F",
         },
         forest: {
-          900: "#13271f",
-          800: "#1b3026",
+          900: "#1B2A21", // Background Dark
+          800: "#2D4F3A", // Primary Green
         },
         earth: {
-          700: "#4f3820",
-          600: "#6b4b2a",
-          500: "#835c35",
+          700: "#6B4F3A", // Primary Brown
+          600: "#6B4F3A",
+          500: "#A67C52", // Soft Brown
         },
         sand: {
-          200: "#e6dcc4",
-          300: "#d9c7a0",
+          200: "#F4F1EA", // Text Main
+          300: "#A67C52", // Soft Brown
         },
         gold: {
-          500: "#b8944b",
+          500: "#D4A373", // Accent Gold
         },
         emerald: {
-          500: "#1f8a6b",
+          500: "#52796F", // Secondary Green (used as accent in old design)
         },
         butterfly: {
-          500: "#3a7ca5",
+          500: "#A67C52", // Soft Brown
         },
         amber: {
-          500: "#d28c2f",
+          500: "#D4A373", // Accent Gold
         },
       },
       fontFamily: {
-        serif: ["var(--font-display)", "serif"],
-        sans: ["var(--font-body)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        logo: ["var(--font-logo)", "serif"],
       },
       boxShadow: {
-        glass: "0 10px 30px rgba(10, 20, 16, 0.25)",
+        glass: "0 8px 32px rgba(0, 0, 0, 0.25)",
       },
       backgroundImage: {
-        "palm-glow":
-          "radial-gradient(circle at top, rgba(31, 138, 107, 0.18), transparent 55%)",
-        "sand-fade":
-          "linear-gradient(135deg, rgba(217, 199, 160, 0.16), rgba(31, 138, 107, 0.08))",
+        "palm-glow": "radial-gradient(circle at top, rgba(45, 79, 58, 0.25), transparent 55%)",
+        "sand-fade": "linear-gradient(135deg, rgba(82, 121, 111, 0.15), rgba(27, 42, 33, 0.08))",
       },
     },
   },

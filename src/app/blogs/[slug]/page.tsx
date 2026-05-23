@@ -20,9 +20,7 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts.find((item) => toSlug(item.title) === slug);
 
@@ -53,15 +51,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <ScrollReveal className="grid gap-10 md:grid-cols-[1fr_0.85fr] md:items-center">
         <div className="space-y-6">
           <Badge tone="emerald">{post.category}</Badge>
-          <SectionHeader
-            eyebrow={post.date}
-            title={post.title}
-            description={post.excerpt}
-          />
+          <SectionHeader eyebrow={post.date} title={post.title} description={post.excerpt} />
           <p className="text-sm leading-7 text-sand-200/70">
-            Araneri journal entries are living placeholders for field essays,
-            craft notes, and ecological observations. This post page is ready
-            for the final long-form article copy.
+            Araneri journal entries are living placeholders for field essays, craft notes, and
+            ecological observations. This post page is ready for the final long-form article copy.
           </p>
           <Button asChild variant="secondary">
             <SafeLink href="/blogs">Back to journal</SafeLink>

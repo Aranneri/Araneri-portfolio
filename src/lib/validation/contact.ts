@@ -13,12 +13,7 @@ const safeText = (min: number, max: number) =>
 
 export const contactSchema = z.object({
   name: safeText(2, 100),
-  email: z
-    .string()
-    .trim()
-    .email("Enter a valid email address.")
-    .min(5)
-    .max(254),
+  email: z.string().trim().email("Enter a valid email address.").min(5).max(254),
   subject: safeText(2, 200),
   message: safeText(10, 2000),
 });

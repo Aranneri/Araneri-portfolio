@@ -1,38 +1,23 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { SafeImage } from "@/components/shared/SafeImage";
-import { SafeLink } from "@/components/shared/SafeLink";
 import type { MediaImage } from "@/types";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { PalmWindAnimation } from "@/components/animations/PalmWindAnimation";
 
 interface HeroSectionProps {
   readonly title: string;
   readonly subtitle: string;
   readonly description: string;
   readonly image: MediaImage;
-  readonly primaryCta: { label: string; href: string };
-  readonly secondaryCta: { label: string; href: string };
 }
 
-export function HeroSection({
-  title,
-  subtitle,
-  description,
-  image,
-  primaryCta,
-  secondaryCta,
-}: HeroSectionProps) {
+export function HeroSection({ title, subtitle, description, image }: HeroSectionProps) {
   const scopeRef = useRef<HTMLElement>(null);
-  const words = title.split(" ");
 
   useLayoutEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion) {
@@ -42,61 +27,11 @@ export function HeroSection({
 
       gsap
         .timeline({ defaults: { ease: "power4.out" } })
-        .from(".hero-badge", {
-          opacity: 0,
-          scale: 0.9,
-          duration: 0.5,
-        })
-        .from(
-          ".hero-word",
-          {
-            y: 80,
-            opacity: 0,
-            stagger: 0.15,
-            duration: 1,
-          },
-          "-=0.1",
-        )
-        .from(
-          ".hero-description",
-          {
-            y: 24,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "-=0.2",
-        )
-        .from(
-          ".hero-cta",
-          {
-            y: 28,
-            opacity: 0,
-            stagger: 0.12,
-            duration: 0.55,
-          },
-          "-=0.25",
-        )
-        .from(
-          ".hero-image-card",
-          {
-            x: 100,
-            opacity: 0,
-            rotate: 5,
-            duration: 1,
-          },
-          "-=0.85",
-        );
-
-      gsap.to(".hero-image-card", {
-        yPercent: -12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: scopeRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+        .from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
+        .from(".hero-headline", { opacity: 0, y: 60, duration: 0.95 }, "-=0.25")
+        .from(".hero-desc-text", { opacity: 0, y: 25, duration: 0.7 }, "-=0.4")
+        .from(".hero-actions", { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
+        .from(".hero-image-frame", { opacity: 0, scale: 0.97, x: 50, duration: 1.1 }, "-=0.55");
 
       ScrollTrigger.refresh();
     }, scopeRef);
@@ -107,46 +42,112 @@ export function HeroSection({
   return (
     <section
       ref={scopeRef}
-      className="group relative overflow-hidden rounded-[var(--radius-lg)] border border-sand-200/10 bg-palm-900/40 px-6 py-16 md:px-12"
+      className="relative h-screen min-h-[600px] w-screen left-1/2 -translate-x-1/2 flex items-start justify-center overflow-hidden px-6 lg:px-16 xl:px-24 bg-[var(--bg-primary)] pt-20 pb-4"
     >
-      <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-        <div className="space-y-6">
-          <span className="hero-badge inline-flex">
-            <Badge tone="emerald">{subtitle}</Badge>
-          </span>
-          <h1
-            className="flex flex-wrap gap-x-3 gap-y-2 text-4xl font-semibold md:text-5xl"
-            aria-label={title}
-          >
-            {words.map((word) => (
-              <span key={word} className="inline-block overflow-hidden">
-                <span className="hero-word inline-block" aria-hidden="true">
-                  {word}
-                </span>
-              </span>
-            ))}
-          </h1>
-          <p className="hero-description max-w-xl text-base text-sand-200/70 md:text-lg">
+      {/* Background container layout block */}
+      <PalmWindAnimation />
+
+      {/* Structured core column framework grid alignment rule */}
+      <div className="relative z-20 mx-auto w-full max-w-7xl grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center pt-6 sm:pt-10 md:pt-14 lg:pt-16">
+        {/* Left Side: Content Column (Shifted rightward on desktop for spacious left-side palm margins) */}
+        <div className="flex flex-col space-y-4 lg:col-span-5 lg:col-start-3 xl:col-span-5 xl:col-start-4 relative z-30">
+          {/* Subtitle Badge Element Tag Block */}
+          <div className="hero-badge self-start">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-[0.25em] uppercase bg-emerald-950/60 text-[#71b38f] border border-emerald-500/20 backdrop-blur-sm">
+              {subtitle}
+            </span>
+          </div>
+
+          {/* Core Title Entry Block */}
+          <div className="hero-headline block w-full select-none mt-3.5 md:mt-5.5">
+            <h1
+              className="painted-title-exact text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-normal leading-[0.95] pb-1"
+              style={{
+                fontFamily: "var(--font-water-brush), 'Water Brush', 'Caveat Brush', cursive",
+                letterSpacing: "0.02em",
+              }}
+            >
+              {title === "Roots of a Palm Tree" ? (
+                <>
+                  <span className="block mb-0.5 sm:mb-1">Roots of</span>
+                  <span className="block mb-0.5 sm:mb-1">a Palm</span>
+                  <span className="block">Tree</span>
+                </>
+              ) : (
+                title
+              )}
+            </h1>
+          </div>
+
+          {/* Paragraph copy text line description block */}
+          <p className="hero-desc-text max-w-xl text-sm sm:text-base leading-relaxed text-[var(--text-secondary)] font-sans tracking-wide">
             {description}
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Button asChild className="hero-cta">
-              <SafeLink href={primaryCta.href}>{primaryCta.label}</SafeLink>
-            </Button>
-            <Button asChild variant="ghost" className="hero-cta">
-              <SafeLink href={secondaryCta.href}>{secondaryCta.label}</SafeLink>
-            </Button>
+
+          {/* Hero Actions Button Group */}
+          <div className="hero-actions flex flex-wrap gap-4 pt-1">
+            <a
+              href="/blogs"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-[#424b33] text-[#ebdcc4] hover:bg-[#2c351e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            >
+              Explore Our Journey
+              <span className="ml-2 inline-block transition-transform duration-300 hover:translate-x-1">→</span>
+            </a>
+            <a
+              href="/about"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-[#424b33]/40 text-[#424b33] hover:border-[#424b33] hover:bg-[#f3e8d6]/50 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              Learn More
+              <span className="ml-2 inline-block font-sans text-xs">⎋</span>
+            </a>
           </div>
         </div>
-        <div className="hero-image-card will-change-transform">
-          <SafeImage
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            className="rounded-[var(--radius-md)] transition-transform duration-700 group-hover:scale-[1.03]"
-            priority
-          />
+
+        {/* Right Side: Composition Image Column (Aligned directly next to content) */}
+        <div className="hero-image-frame relative w-full lg:col-span-5 lg:col-start-8 xl:col-span-4 xl:col-start-9 flex justify-center lg:justify-end">
+          {/* Decorative Framing Offset Borders */}
+          <div className="absolute -left-4 top-8 hidden h-24 w-20 border-l border-t border-[#d4a373]/60 md:block z-0" />
+          <div className="absolute -right-4 -bottom-3 hidden h-16 w-24 border-b border-r border-[#f4f1ea]/32 md:block z-0" />
+
+          {/* Image Frame Box block handler */}
+          <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:h-[380px] lg:w-[480px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.55)] z-10 bg-emerald-950">
+            <SafeImage
+              src={image.src}
+              alt={image.alt || "Araneri main workspace scene"}
+              width={image.width || 800}
+              height={image.height || 600}
+              priority
+              wrapperClassName="h-full w-full"
+              className="h-full w-full object-cover brightness-[0.78] saturate-[0.82] transition-transform duration-1000 hover:scale-105"
+            />
+
+            {/* Inset Vignette Shadowing */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+
+            {/* Full-width bottom bar overlay with circular sprout emblem */}
+            <div className="absolute bottom-0 left-0 right-0 bg-[#424b33]/95 px-5 py-4 flex items-center gap-4 text-sm text-[#ebdcc4] backdrop-blur-sm border-t border-[#ebdcc4]/10 shadow-xl z-20">
+              <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#ebdcc4] text-[#424b33] shadow-md border border-[#ebdcc4]/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5 text-[#424b33]"
+                >
+                  <path d="M12 22V12" />
+                  <path d="M12 12C12 9 10 7 7 7c0 0 0 3 3 5 2 1.3 2 0 2 0z" />
+                  <path d="M12 12C12 9 14 7 17 7c0 0 0 3 -3 5 -2 1.3 -2 0 -2 0z" />
+                  <circle cx="12" cy="12" r="9" strokeWidth="1.5" />
+                </svg>
+              </div>
+              <p className="leading-relaxed font-sans font-medium tracking-wide text-xs sm:text-sm text-left">
+                Community programs, craft partnerships, and ecological work shaped with care.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

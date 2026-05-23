@@ -19,11 +19,7 @@ export function ParallaxContainer({ children, offset = 40, className }: Parallax
   const y = useTransform(scrollYProgress, [0, 1], [offset, -offset]);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y: prefersReducedMotion ? 0 : y }}
-      className={className}
-    >
+    <motion.div ref={ref} style={{ y: prefersReducedMotion ? 0 : y }} className={className}>
       {children}
     </motion.div>
   );

@@ -24,7 +24,7 @@ export const products: readonly Product[] = [
     highlight: "Seasonal pairing experiences",
   },
   {
-    title: "Ozhil-Thozhil Koodam",
+    title: "Ezhil-Thozhil Koodam",
     description: "A studio collective for palm craft apprenticeships and exchanges.",
     image: imagePlaceholders.palmTrunk,
     href: "/products",
