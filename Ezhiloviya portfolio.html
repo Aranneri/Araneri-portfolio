@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ezhil Oviya — Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --void: #03010a;
+  --deep: #07020f;
+  --nebula-dark: #0d0520;
+  --nebula-mid: #160830;
+  --nebula-surface: #1e0d3f;
+  --purple: #7b35c8;
+  --purple-bright: #a855f7;
+  --purple-glow: rgba(168,85,247,0.15);
+  --indigo: #4338ca;
+  --nebula-red: #9b1e3e;
+  --nebula-orange: #c2410c;
+  --amber-glow: #f97316;
+  --star: #e8e4f5;
+  --star2: #b8aed8;
+  --star3: #6b5e8e;
+  --border: rgba(168,85,247,0.2);
+  --border2: rgba(255,255,255,0.05);
+  --tag-bg: rgba(168,85,247,0.12);
+  --tag-text: #c084fc;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--star);
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── STARFIELD CANVAS ── */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── NEBULA BLOBS ── */
+.nebula-blob {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+.nb1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, #4c1d95, transparent 70%);
+  top: -100px; left: -150px;
+}
+.nb2 {
+  width: 500px; height: 400px;
+  background: radial-gradient(circle, #7f1d1d, transparent 70%);
+  top: 30%; right: -100px;
+}
+.nb3 {
+  width: 700px; height: 500px;
+  background: radial-gradient(circle, #1e1b4b, transparent 70%);
+  bottom: 0; left: 20%;
+}
+.nb4 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #92400e, transparent 70%);
+  bottom: 15%; right: 5%;
+  opacity: 0.2;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 4rem;
+  background: rgba(3,1,10,0.75);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border2);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--star);
+}
+.nav-logo em { font-style: italic; color: var(--purple-bright); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--star3);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--purple-bright); }
+
+/* ── MAIN ── */
+main { position: relative; z-index: 1; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 8rem 4rem 4rem;
+  position: relative;
+}
+.hero-coord {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--star3);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-coord::before {
+  content: '';
+  display: block; width: 40px; height: 1px;
+  background: var(--purple-bright);
+  opacity: 0.5;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.hero-name .line2 {
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(168,85,247,0.7);
+}
+.hero-role {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  color: var(--star3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.hero-tagline {
+  max-width: 520px;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--star2);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.hero-tagline::before {
+  content: '';
+  position: absolute; left: 0; top: 0.3em; bottom: 0.3em;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--purple-bright), var(--nebula-red));
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-cosmic {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2.2rem;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--indigo) 100%);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: opacity 0.2s, transform 0.15s;
+  border: 1px solid rgba(168,85,247,0.4);
+}
+.btn-cosmic:hover { opacity: 0.85; transform: translateY(-2px); }
+.btn-void {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 2.2rem;
+  border: 1px solid var(--border);
+  color: var(--star2);
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-void:hover { border-color: var(--purple-bright); color: var(--purple-bright); transform: translateY(-2px); }
+
+/* ── AVATAR PLACEHOLDER ── */
+.avatar-orbit {
+  position: absolute;
+  right: 6rem; top: 50%;
+  transform: translateY(-50%);
+  width: 300px; height: 300px;
+}
+.avatar-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(168,85,247,0.3);
+  animation: spin-slow 20s linear infinite;
+}
+.avatar-ring::after {
+  content: '';
+  position: absolute;
+  top: -4px; left: 50%;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--purple-bright);
+  transform: translateX(-50%);
+}
+.avatar-img {
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  background: var(--nebula-surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  color: var(--star3);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-style: italic;
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+
+/* ── SECTIONS ── */
+section { padding: 6rem 4rem; position: relative; }
+.s-alt { background: rgba(13,5,32,0.6); }
+
+.s-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--purple-bright);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+.s-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+.s-heading em { font-style: italic; color: var(--purple-bright); }
+
+/* ── ABOUT ── */
+.about-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 5rem; align-items: start; }
+.about-body { font-size: 1rem; color: var(--star2); line-height: 1.9; }
+.about-body p + p { margin-top: 1.1rem; }
+.about-body strong { color: var(--star); font-weight: 500; }
+.about-aside { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.aside-card {
+  background: rgba(30,13,63,0.6);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+}
+.aside-card-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--star3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.aside-card p { font-size: 0.9rem; color: var(--star2); line-height: 1.7; }
+
+.motto-block {
+  margin-top: 2.5rem;
+  padding: 2rem 2.5rem;
+  background: rgba(30,13,63,0.5);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 6px;
+  position: relative;
+}
+.motto-block::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem; left: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  color: var(--purple-bright);
+  opacity: 0.3;
+  line-height: 1;
+}
+.motto-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--star);
+  line-height: 1.6;
+}
+.motto-sub {
+  margin-top: 0.75rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--star3);
+  letter-spacing: 0.08em;
+}
+
+/* ── SKILLS ── */
+.skills-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skill-group h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--purple-bright);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.skill-pill {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 2px;
+  border: 1px solid rgba(168,85,247,0.25);
+  letter-spacing: 0.04em;
+  transition: background 0.2s, border-color 0.2s;
+}
+.skill-pill:hover { background: rgba(168,85,247,0.2); border-color: var(--purple-bright); }
+
+.tools-cosmos {
+  margin-top: 3.5rem;
+  padding: 2rem 2.5rem;
+  background: rgba(7,2,15,0.7);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+}
+.tools-cosmos-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--star3);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.tools-cosmos-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.tool-node {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border2);
+  color: var(--star2);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tool-node:hover { border-color: var(--purple-bright); color: var(--purple-bright); }
+
+/* ── CREATIVE WORK ── */
+.creative-intro { font-size: 1rem; color: var(--star2); line-height: 1.8; max-width: 640px; margin-bottom: 3rem; }
+
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.work-card {
+  background: rgba(22,8,48,0.7);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.2s;
+}
+.work-card:hover { border-color: var(--border); transform: translateY(-4px); }
+.work-thumb {
+  aspect-ratio: 16/9;
+  background: var(--nebula-surface);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.work-thumb-bg {
+  position: absolute; inset: 0;
+  opacity: 0.4;
+}
+.wt1 { background: radial-gradient(circle at 40% 60%, #7f1d1d, #1e0d3f); }
+.wt2 { background: radial-gradient(circle at 60% 40%, #4c1d95, #0d0520); }
+.wt3 { background: radial-gradient(circle at 50% 50%, #92400e, #1e0d3f); }
+
+.work-play {
+  position: relative; z-index: 1;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(168,85,247,0.2);
+  border: 1px solid rgba(168,85,247,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.work-play svg { width: 18px; height: 18px; fill: var(--purple-bright); margin-left: 2px; }
+.work-info { padding: 1.25rem 1.5rem; }
+.work-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--purple-bright);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+.work-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--star);
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+.work-desc { font-size: 0.82rem; color: var(--star3); line-height: 1.6; }
+
+/* ── ARTWORKS ── */
+.artworks-note {
+  font-size: 0.9rem; color: var(--star3);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.06em;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border: 1px dashed rgba(168,85,247,0.2);
+  border-radius: 4px;
+  display: inline-block;
+}
+.artworks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+.artwork-frame {
+  aspect-ratio: 1;
+  background: var(--nebula-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--star3);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.artwork-frame::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0.3;
+}
+.af1::before { background: radial-gradient(circle at 30% 70%, #7f1d1d, transparent 60%); }
+.af2::before { background: radial-gradient(circle at 70% 30%, #4c1d95, transparent 60%); }
+.af3::before { background: radial-gradient(circle at 50% 80%, #92400e, transparent 60%); }
+.artwork-frame svg { width: 28px; height: 28px; position: relative; z-index: 1; }
+.artwork-frame span { position: relative; z-index: 1; }
+
+/* ── ARANERI ── */
+.araneri-card {
+  background: rgba(13,5,32,0.8);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 8px;
+  padding: 3rem 3.5rem;
+  max-width: 780px;
+  position: relative;
+}
+.araneri-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--star);
+  font-weight: 300;
+}
+.araneri-quote strong { font-style: normal; color: var(--purple-bright); font-weight: 600; }
+.araneri-attr {
+  margin-top: 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--star3);
+  letter-spacing: 0.1em;
+}
+
+/* ── FIRE QUOTE ── */
+.fire-quote-section {
+  text-align: center;
+  padding: 5rem 4rem;
+  position: relative;
+}
+.fire-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--star);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.fire-quote em {
+  font-style: italic;
+  color: var(--amber-glow);
+}
+.fire-div {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nebula-red), transparent);
+  margin: 2rem auto;
+}
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact-left p { font-size: 1rem; color: var(--star2); line-height: 1.8; margin-bottom: 2rem; }
+.social-links { display: flex; flex-direction: column; gap: 0.85rem; }
+.social-link {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(13,5,32,0.7);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--star2);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-link:hover {
+  border-color: var(--border);
+  color: var(--purple-bright);
+  background: var(--purple-glow);
+}
+.social-link svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.7; }
+.social-name { flex: 1; }
+.social-handle { font-size: 0.65rem; color: var(--star3); }
+
+.etk-block {
+  background: rgba(30,13,63,0.5);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem 2.5rem;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 1rem;
+}
+.etk-logo-placeholder {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--nebula-surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--purple-bright);
+}
+.etk-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--star3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.etk-desc { font-size: 0.9rem; color: var(--star2); line-height: 1.7; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 2.5rem 4rem;
+  border-top: 1px solid var(--border2);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--star3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative; z-index: 1;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fade-up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.fu { animation: fade-up 0.8s ease both; }
+.d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.25s; }
+.d3 { animation-delay: 0.4s; } .d4 { animation-delay: 0.55s; }
+.d5 { animation-delay: 0.7s; }
+
+@keyframes twinkle { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section, .hero { padding: 4rem 1.5rem; }
+  .hero-name { font-size: 4rem; }
+  .avatar-orbit { display: none; }
+  .about-layout, .skills-columns, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .works-grid, .artworks-grid { grid-template-columns: 1fr; }
+  footer { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<div class="nebula-blob nb1" aria-hidden="true"></div>
+<div class="nebula-blob nb2" aria-hidden="true"></div>
+<div class="nebula-blob nb3" aria-hidden="true"></div>
+<div class="nebula-blob nb4" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ezhil <em>Oviya</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div class="hero-coord fu">Strategist &nbsp;&middot;&nbsp; Visionary &nbsp;&middot;&nbsp; Creator</div>
+
+  <h1 class="hero-name fu d1">
+    Ezhil<br/>
+    <span class="line2">Oviya</span>
+  </h1>
+
+  <div class="hero-role fu d2">Araneri &nbsp;/&nbsp; Strategy &nbsp;&middot;&nbsp; Storytelling &nbsp;&middot;&nbsp; Branding</div>
+
+  <p class="hero-tagline fu d3">
+    Building ideas that blend technology, storytelling, and impossible dreams!!!
+  </p>
+
+  <div class="hero-cta fu d4">
+    <a href="#work" class="btn-cosmic">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      See My Work
+    </a>
+    <a href="#contact" class="btn-void">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Connect
+    </a>
+  </div>
+
+  <!-- Avatar orbit (swap img src for real photo) -->
+  <div class="avatar-orbit fu d5" aria-label="Profile portrait">
+    <div class="avatar-ring"></div>
+    <div class="avatar-img">
+      <!-- Replace the text below with: <img src="YOUR_PHOTO.jpg" alt="Ezhil Oviya" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"> -->
+      EO
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="s-alt">
+  <div class="s-label">01 / About</div>
+  <h2 class="s-heading">Dreaming beyond<br/><em>ordinary limits.</em></h2>
+
+  <div class="about-layout">
+    <div class="about-body">
+      <p>I'm someone who <strong>constantly dreams beyond ordinary limits.</strong> My interests revolve around technology, storytelling, space exploration, and building meaningful ideas that leave a lasting impact.</p>
+      <p>I enjoy working on projects that combine creativity with logic. I love mathematics, logical thinking, space science, physics — everything that involves <strong>breaking the previous patterns of human belief</strong> and bringing new ways of thinking about a problem in an unconventional way.</p>
+      <p>My approach toward work is <strong>intense, detail-oriented, and vision-driven.</strong> I believe every project should have purpose, emotion, and identity — instead of just existing for the sake of completion. I always look into the reason for existence before stepping into anything.</p>
+      <p>I enjoy experimenting with bold ideas and turning chaotic thoughts into structured creations. I believe everything has a purpose except for human beings, who are gifted enough to <strong>choose their own</strong> — and I will make sure I nurture that gift and build a life driven by vision, values, and voice.</p>
+      <p>And yes — I am <strong>proudly a Potterhead.</strong> Currently working on writing my own psychological thriller. I can work all 24 hours if I love something too much — and the opposite is equally true.</p>
+    </div>
+
+    <div class="about-aside">
+      <div class="aside-card">
+        <div class="aside-card-label">Currently</div>
+        <p>Strategist at Araneri. Writing a psychological thriller novel. Exploring the intersections of storytelling, branding, and space science.</p>
+      </div>
+      <div class="aside-card">
+        <div class="aside-card-label">Obsessions</div>
+        <p>Space exploration &nbsp;&middot;&nbsp; Harry Potter universe &nbsp;&middot;&nbsp; Psychological thrillers &nbsp;&middot;&nbsp; Unconventional problem-solving &nbsp;&middot;&nbsp; Mathematics &amp; Physics</p>
+      </div>
+      <div class="aside-card">
+        <div class="aside-card-label">Philosophy</div>
+        <p>I always look into the <em>reason for existence</em> of something before stepping into it. Purpose before action — always.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="motto-block">
+    <p class="motto-text">Use your emotions to build yourself, not to destroy yourself.</p>
+    <div class="motto-sub">— Personal motto &nbsp;·&nbsp; Ezhil Oviya</div>
+  </div>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label">02 / Skills</div>
+  <h2 class="s-heading">Strategic &amp; <em>Creative Arsenal</em></h2>
+
+  <div class="skills-columns">
+    <div class="skill-group">
+      <h3>Strategy &amp; Leadership</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Strategic Planning</span>
+        <span class="skill-pill">Leadership</span>
+        <span class="skill-pill">Team Building</span>
+        <span class="skill-pill">Coordination</span>
+        <span class="skill-pill">Negotiation</span>
+        <span class="skill-pill">Ideation</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Communication &amp; Creativity</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">Public Speaking</span>
+        <span class="skill-pill">Storytelling</span>
+        <span class="skill-pill">Creative Writing</span>
+        <span class="skill-pill">Marketing</span>
+        <span class="skill-pill">Branding Concepts</span>
+        <span class="skill-pill">Communication</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-cosmos">
+    <div class="tools-cosmos-label">Tools &amp; Software</div>
+    <div class="tools-cosmos-grid">
+      <span class="tool-node">Figma</span>
+      <span class="tool-node">Canva</span>
+      <span class="tool-node">DaVinci Resolve</span>
+      <span class="tool-node">VS Code</span>
+      <span class="tool-node">Beehiiv</span>
+      <span class="tool-node">ClickUp</span>
+      <span class="tool-node">Clipchamp</span>
+      <span class="tool-node">PowerPoint</span>
+      <span class="tool-node">Google Drive*</span>
+    </div>
+    <div style="margin-top:1rem; font-family:'Space Mono',monospace; font-size:0.62rem; color:var(--star3); font-style:italic;">
+      * "Trust me, it's more complicated than all the others mentioned here." — E.O.
+    </div>
+  </div>
+
+</section>
+
+<!-- CREATIVE WORK -->
+<section id="work" class="s-alt">
+  <div class="s-label">03 / Creative Work</div>
+  <h2 class="s-heading">Directed &amp; <em>Crafted</em></h2>
+
+  <p class="creative-intro">
+    Video projects directed and partly edited for live promotions and events — blending cinematic storytelling with strategic brand communication.
+  </p>
+
+  <div class="works-grid">
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <div class="work-thumb-bg wt1"></div>
+        <a href="https://drive.google.com/file/d/1t0X5g_dOvm-Jcdc6378Bps67tePKB-qv/view?usp=sharing" target="_blank" rel="noopener" class="work-play" aria-label="Watch Short Film Competition Promo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </a>
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Promotion Film</div>
+        <div class="work-title">Short Film Competition Promo</div>
+        <div class="work-desc">Directed promotional video for a short film competition. Cinematic storytelling meets strategic event marketing.</div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <div class="work-thumb-bg wt2"></div>
+        <a href="https://drive.google.com/file/d/1pZ5vA1x_8c5WO6G_GfRf9-IeNrcg3vvy/view?usp=sharing" target="_blank" rel="noopener" class="work-play" aria-label="Watch O'See Matinee Video Edit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </a>
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Video Edit</div>
+        <div class="work-title">O'See Matinee — Video Edit</div>
+        <div class="work-desc">Edited and directed a matinee event promo. Narrative-driven pacing with visual storytelling focus.</div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb">
+        <div class="work-thumb-bg wt3"></div>
+        <a href="https://drive.google.com/file/d/1b0xC1CtUuFvetpQvfBaNIOLmxvQMSU0U/view?usp=sharing" target="_blank" rel="noopener" class="work-play" aria-label="Watch Street Promotion Video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </a>
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Street Promo</div>
+        <div class="work-title">Street Promotion — O'See Matinee</div>
+        <div class="work-desc">On-ground street promotion captured and directed. Authentic, raw, and energetic event documentation.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Artworks -->
+  <div style="margin-top:4rem;">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:1.5rem;color:var(--star);">
+      Artworks
+    </h3>
+    <div class="artworks-note">
+      Add your artwork images: replace each placeholder below with &lt;img src="your-artwork.jpg" alt="description" style="width:100%;height:100%;object-fit:cover;"&gt;
+    </div>
+    <div class="artworks-grid">
+      <div class="artwork-frame af1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Artwork 01</span>
+      </div>
+      <div class="artwork-frame af2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Artwork 02</span>
+      </div>
+      <div class="artwork-frame af3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Artwork 03</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- FIRE QUOTE -->
+<section class="fire-quote-section">
+  <div class="fire-div"></div>
+  <p class="fire-quote">
+    "Your anger in your failure will eventually lead to your success — <em>keep grinding.</em>"
+  </p>
+  <div class="fire-div"></div>
+</section>
+
+<!-- ARANERI -->
+<section class="s-alt">
+  <div class="s-label">04 / Araneri</div>
+  <h2 class="s-heading">A space to be <em>entirely myself.</em></h2>
+  <div class="araneri-card">
+    <blockquote class="araneri-quote">
+      "<strong>Araneri</strong> is a place where I can do anything I like, however I like, without fearing other people's opinions or judgement. I love the constructive criticism provided by the team — it builds a better version of me as well as the product we are working on."
+    </blockquote>
+    <div class="araneri-attr">— Ezhil Oviya &nbsp;&middot;&nbsp; Strategist, Araneri</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-label">05 / Contact</div>
+  <h2 class="s-heading">Reach across <em>the void.</em></h2>
+
+  <div class="contact-grid">
+    <div class="contact-left">
+      <p>Whether it's an impossible idea, a bold collaboration, or just a conversation about space, stories, and what lies beyond — I'm always listening.</p>
+
+      <div class="social-links">
+
+        <a href="https://www.instagram.com/fumar.ascends?igsh=ZXd5enRkdmI4djd3" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          <div>
+            <div class="social-name">Instagram</div>
+            <div class="social-handle">@fumar.ascends</div>
+          </div>
+        </a>
+
+        <a href="https://www.facebook.com/share/1Bkh6QjgQ5/" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <div>
+            <div class="social-name">Facebook</div>
+            <div class="social-handle">Ezhil Oviya</div>
+          </div>
+        </a>
+
+        <a href="https://x.com/EzhilOviya0305" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M4 20L20 4"/></svg>
+          <div>
+            <div class="social-name">X (Twitter)</div>
+            <div class="social-handle">@EzhilOviya0305</div>
+          </div>
+        </a>
+
+        <a href="https://github.com/Ezhil-Oviya" class="social-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div>
+            <div class="social-name">GitHub</div>
+            <div class="social-handle">Ezhil-Oviya</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div>
+      <div class="etk-block">
+        <!-- Replace "EO" with: <img src="ETK-logo.png" alt="ETK Logo" style="width:80px;height:80px;object-fit:contain;"> -->
+        <div class="etk-logo-placeholder">ETK</div>
+        <div class="etk-label">ETK — Identity Mark</div>
+        <p class="etk-desc">This is Ezhil Oviya's creative identity. Every project, every frame, every word — authored with purpose and vision.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Ezhil Oviya &nbsp;&middot;&nbsp; Strategist &nbsp;&middot;&nbsp; Araneri &nbsp;&middot;&nbsp; 2025 &nbsp;&middot;&nbsp; Built for the cosmos
+</footer>
+
+<script>
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+function initStars() {
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 4000);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2 + 0.2,
+      a: Math.random(),
+      speed: Math.random() * 0.005 + 0.001,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+}
+function drawStars(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    const alpha = (Math.sin(t * s.speed + s.phase) * 0.4 + 0.6) * s.a;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(232, 228, 245, ${alpha})`;
+    ctx.fill();
+  });
+}
+let raf;
+function loop(t) {
+  drawStars(t);
+  raf = requestAnimationFrame(loop);
+}
+resize();
+initStars();
+loop(0);
+window.addEventListener('resize', () => { resize(); initStars(); });
+</script>
+</body>
+</html>

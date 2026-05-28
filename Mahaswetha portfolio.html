@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mahaswetha N. — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #050d1a;
+    --navy2: #0a1628;
+    --navy3: #0f1f38;
+    --slate: #1a2d4a;
+    --slate2: #243855;
+    --electric: #2979ff;
+    --electric2: #448aff;
+    --electric-glow: rgba(41,121,255,0.15);
+    --cyan: #00e5ff;
+    --text: #e8edf5;
+    --text2: #9aaec8;
+    --text3: #5c7499;
+    --border: rgba(41,121,255,0.18);
+    --border2: rgba(255,255,255,0.06);
+    --tag-bg: rgba(41,121,255,0.12);
+    --tag-text: #60a5fa;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  /* noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ── GRID BG ── */
+  .grid-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(41,121,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(41,121,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(5,13,26,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border2);
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .nav-logo span { color: var(--electric); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text2);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--electric2); }
+
+  /* ── MAIN WRAPPER ── */
+  main { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(41,121,255,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--electric2);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px;
+    background: var(--electric2);
+  }
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name .italic { font-style: italic; color: var(--electric2); }
+  .hero-title {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    color: var(--text2);
+    letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+  }
+  .hero-intro {
+    max-width: 560px;
+    font-size: 1.05rem;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    border-left: 2px solid var(--electric);
+    padding-left: 1.5rem;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--electric);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--electric2); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--electric2); color: var(--electric2); transform: translateY(-1px); }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--electric2);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: ''; display: block;
+    flex: 1; height: 1px;
+    max-width: 60px;
+    background: var(--electric2);
+    opacity: 0.4;
+  }
+  .section-heading {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text { font-size: 1rem; color: var(--text2); line-height: 1.9; }
+  .about-text p + p { margin-top: 1rem; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+  .about-focus {
+    background: var(--navy2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .about-focus-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--electric2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .about-focus p { font-size: 0.95rem; color: var(--text2); line-height: 1.8; }
+  .motto {
+    margin-top: 2rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--electric2);
+    opacity: 0.9;
+    border-top: 1px solid var(--border2);
+    padding-top: 1.5rem;
+  }
+
+  /* ── SKILLS ── */
+  .skills-bg { background: var(--navy2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--navy3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border); transform: translateY(-3px); }
+  .skill-card-icon {
+    width: 40px; height: 40px;
+    background: var(--electric-glow);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+  }
+  .skill-card h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    border: 1px solid rgba(41,121,255,0.2);
+  }
+  .tools-row {
+    margin-top: 3rem;
+    padding: 1.5rem 2rem;
+    background: var(--navy3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .tools-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .tool-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text2);
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+  }
+
+  /* ── PROJECTS BENTO ── */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 1.25rem;
+  }
+  .bento-card {
+    background: var(--navy2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 2rem 2.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .bento-card:hover { border-color: var(--border); transform: translateY(-2px); }
+  .bento-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--electric), var(--cyan));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .bento-card:hover::before { opacity: 1; }
+
+  .bc-1 { grid-column: span 7; }
+  .bc-2 { grid-column: span 5; }
+  .bc-3 { grid-column: span 5; }
+  .bc-4 { grid-column: span 7; }
+
+  .bento-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--electric2);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+    opacity: 0.7;
+  }
+  .bento-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .bento-impact {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+  .bento-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .bento-tech .tag { font-size: 0.65rem; }
+  .bento-badge {
+    position: absolute;
+    top: 1.5rem; right: 1.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,255,0.25);
+    background: rgba(0,229,255,0.06);
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── REFLECTIONS ── */
+  .reflections-bg { background: var(--navy2); }
+  .reflection-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 3rem;
+    position: relative;
+    max-width: 800px;
+  }
+  .reflection-quote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .reflection-quote strong { font-style: normal; color: var(--electric2); font-weight: 600; }
+  .reflection-attr {
+    margin-top: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── CONTACT ── */
+  .contact-row {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 1.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text2);
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    background: var(--navy2);
+  }
+  .contact-link:hover {
+    border-color: var(--electric2);
+    color: var(--electric2);
+    background: var(--electric-glow);
+  }
+  .contact-link svg { width: 18px; height: 18px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--border2);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fade-up 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+  .delay-5 { animation-delay: 0.65s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section, .hero { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bc-1, .bc-2, .bc-3, .bc-4 { grid-column: span 1; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M<span>.</span>N</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-eyebrow fade-up">Software Engineer &amp; AI Integrator</div>
+  <h1 class="hero-name fade-up delay-1">
+    Maha<span class="italic">swetha</span><br/>N.
+  </h1>
+  <div class="hero-title fade-up delay-2">Full-Stack Developer &nbsp;·&nbsp; Fintech &nbsp;·&nbsp; Healthcare &nbsp;·&nbsp; Community Impact</div>
+  <p class="hero-intro fade-up delay-3">
+    Building scalable, AI-powered web solutions at the intersection of fintech, healthcare, and community impact.
+  </p>
+  <div class="hero-cta fade-up delay-4">
+    <a href="#projects" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      View Projects
+    </a>
+    <a href="#contact" class="btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Get in Touch
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 &nbsp;/&nbsp; About</div>
+  <h2 class="section-heading">Architecting at the<br/><em style="font-style:italic;color:var(--electric2)">intersection of ideas.</em></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a <strong>second-year Computer Science Engineering student</strong> passionate about full-stack development and leveraging AI to solve real-world problems. My work spans fintech, community disaster response, and healthcare management—where I focus on building secure, efficient, and user-centric applications.</p>
+      <p>I thrive on architecting complex systems—from deploying <strong>Flask backends on Azure</strong> to integrating sophisticated LLMs like <strong>Llama 3.3 and Gemini AI</strong> to enhance user functionality. My approach is defined by clean, performant code and a commitment to technical rigor.</p>
+      <p>Beyond my technical projects, I am an active member of <strong>The Box Office</strong> (MIT Dramatics Club), where I enjoy blending technical development with creative, collaborative efforts.</p>
+    </div>
+    <div>
+      <div class="about-focus">
+        <div class="about-focus-label">Current Focus</div>
+        <p>Deepening expertise in advanced cloud architecture, specifically exploring how AI-driven insights can be integrated into everyday web applications to radically improve accessibility and operational efficiency.</p>
+        <div class="motto">"Turning complexity into clarity through code."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="section-label">02 &nbsp;/&nbsp; Skills</div>
+  <h2 class="section-heading">Technical Arsenal</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--electric2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Full-Stack Development</h3>
+      <div class="skill-tags">
+        <span class="tag">MERN Stack</span>
+        <span class="tag">MEAN Stack</span>
+        <span class="tag">RESTful APIs</span>
+        <span class="tag">React.js</span>
+        <span class="tag">Angular 17</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Express</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--electric2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>AI &amp; LLM Integration</h3>
+      <div class="skill-tags">
+        <span class="tag">Google Gemini</span>
+        <span class="tag">Llama 3.3</span>
+        <span class="tag">Groq API</span>
+        <span class="tag">NLP Pipelines</span>
+        <span class="tag">AI Classification</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--electric2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+      </div>
+      <h3>Cloud &amp; Infrastructure</h3>
+      <div class="skill-tags">
+        <span class="tag">Microsoft Azure</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Ubuntu VM</span>
+        <span class="tag">Gunicorn</span>
+        <span class="tag">Deployment Pipelines</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--electric2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <h3>Core Engineering</h3>
+      <div class="skill-tags">
+        <span class="tag">MongoDB</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Python / Flask</span>
+        <span class="tag">JWT Auth</span>
+        <span class="tag">UI/UX Optimization</span>
+        <span class="tag">Technical Writing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-row">
+    <span class="tools-label">Tools</span>
+    <span class="tool-pill">Git / GitHub</span>
+    <span class="tool-pill">VS Code</span>
+    <span class="tool-pill">Angular 17</span>
+    <span class="tool-pill">Recharts</span>
+    <span class="tool-pill">Google Maps API</span>
+    <span class="tool-pill">Flask</span>
+    <span class="tool-pill">Python</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 &nbsp;/&nbsp; Projects</div>
+  <h2 class="section-heading">Selected Work</h2>
+
+  <div class="bento-grid">
+
+    <!-- Card 1 — Community Impact -->
+    <div class="bento-card bc-1">
+      <div class="bento-badge">Community</div>
+      <div class="bento-num">Project 01</div>
+      <h3 class="bento-title">Community Impact<br/>Disaster Response Platform</h3>
+      <p class="bento-impact">Engineered a tri-role disaster coordination platform with AI-automated incident classification. Leveraged Google Maps API for real-time crisis monitoring and situational awareness across multiple stakeholder levels.</p>
+      <div class="bento-tech">
+        <span class="tag">Angular 17</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Gemini 1.5 Flash</span>
+        <span class="tag">Google Maps API</span>
+        <span class="tag">AI Classification</span>
+      </div>
+    </div>
+
+    <!-- Card 2 — MyFinance -->
+    <div class="bento-card bc-2">
+      <div class="bento-badge">Fintech</div>
+      <div class="bento-num">Project 02</div>
+      <h3 class="bento-title">MyFinance<br/>AI Finance Tracker</h3>
+      <p class="bento-impact">Secure finance manager with JWT-protected APIs. Natural language transaction logging and AI-driven financial reporting via Groq integration. Built on MERN stack with Recharts for data visualization.</p>
+      <div class="bento-tech">
+        <span class="tag">MERN Stack</span>
+        <span class="tag">Llama 3.3</span>
+        <span class="tag">JWT</span>
+        <span class="tag">Recharts</span>
+        <span class="tag">Groq API</span>
+      </div>
+    </div>
+
+    <!-- Card 3 — Box Office -->
+    <div class="bento-card bc-3">
+      <div class="bento-badge">Web</div>
+      <div class="bento-num">Project 03</div>
+      <h3 class="bento-title">The Box Office<br/>MIT Dramatics Site</h3>
+      <p class="bento-impact">Scaled to 500+ users. Reduced initial load times by 40% via code splitting. Delivered a reusable UI component library that boosted feature deployment velocity by 25%.</p>
+      <div class="bento-tech">
+        <span class="tag">React.js</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">Code Splitting</span>
+        <span class="tag">Component Library</span>
+      </div>
+    </div>
+
+    <!-- Card 4 — Medical -->
+    <div class="bento-card bc-4">
+      <div class="bento-badge">Healthcare</div>
+      <div class="bento-num">Project 04</div>
+      <h3 class="bento-title">Cloud-Deployed Medical<br/>Management Application</h3>
+      <p class="bento-impact">Architected a secure healthcare backend deployed on an Azure Ubuntu VM, ensuring high reliability and efficient persistent storage. Production-grade infrastructure with Gunicorn for process management and SQLite for structured data persistence across sessions.</p>
+      <div class="bento-tech">
+        <span class="tag">Flask</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Gunicorn</span>
+        <span class="tag">Microsoft Azure</span>
+        <span class="tag">Ubuntu VM</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REFLECTIONS -->
+<section id="reflections" class="reflections-bg">
+  <div class="section-label">04 &nbsp;/&nbsp; Reflections</div>
+  <h2 class="section-heading">On Araneri &amp; Community</h2>
+  <div class="reflection-card">
+    <blockquote class="reflection-quote">
+      "What excites me about <strong>Araneri</strong> is the emphasis on showcasing diverse talent and building a community that values both aesthetics and functional depth. My favorite thing about it is the platform's ability to turn a collection of technical projects into a cohesive, personal narrative that truly reflects a developer's growth and ambition."
+    </blockquote>
+    <div class="reflection-attr">— Mahaswetha N. &nbsp;·&nbsp; MIT Dramatics Club &amp; CS Engineering Student</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 &nbsp;/&nbsp; Contact</div>
+  <h2 class="section-heading">Let's Connect</h2>
+  <p style="color:var(--text2);max-width:480px;line-height:1.8;margin-bottom:0.5rem;">Open to collaborations, interesting problems, and conversations about AI-powered systems.</p>
+  <div class="contact-row">
+    <a href="https://www.linkedin.com/in/mahaswetha-n-040bab325" class="contact-link" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/mahaswetha17" class="contact-link" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>Mahaswetha N. &nbsp;·&nbsp; Software Engineer &nbsp;·&nbsp; Built with intentional design &nbsp;·&nbsp; 2025</span>
+</footer>
+
+</body>
+</html>
