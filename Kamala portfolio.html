@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kamala Saraswathi K — Engineer · Writer · Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --black:   #080a06;
+  --ink:     #0f120c;
+  --ink2:    #161a12;
+  --ink3:    #1d2218;
+  --forest:  #1a3020;
+  --green:   #2d5a3d;
+  --green2:  #3d7a52;
+  --sage:    #5a8a6a;
+  --sage-lt: rgba(90,138,106,0.15);
+  --gold:    #c8a96a;
+  --gold2:   #dfc080;
+  --gold-gl: rgba(200,169,106,0.12);
+  --beige:   #f0ead8;
+  --beige2:  #e8dfc8;
+  --beige3:  #d4c9a8;
+  --chalk:   #faf8f2;
+  --text:    #e8e0cc;
+  --text2:   #a09878;
+  --text3:   #5a5040;
+  --border:  rgba(200,169,106,0.15);
+  --border2: rgba(255,255,255,0.06);
+  --border3: rgba(200,169,106,0.28);
+  --tag-bg:  rgba(200,169,106,0.1);
+  --tag-txt: #c8a96a;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);color:var(--text);
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  line-height:1.75;overflow-x:hidden;cursor:none;
+}
+
+/* ── GRAIN ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+  opacity:0.5;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cur{position:fixed;z-index:9998;pointer-events:none;width:8px;height:8px;
+  background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);
+  box-shadow:0 0 8px rgba(200,169,106,0.5);}
+.cur-ring{position:fixed;z-index:9997;pointer-events:none;width:28px;height:28px;
+  border:1px solid rgba(200,169,106,0.35);border-radius:50%;
+  transform:translate(-50%,-50%);transition:all 0.16s ease;}
+
+/* ── BG ELEMENTS ── */
+.bg-leaf{
+  position:fixed;pointer-events:none;z-index:0;
+  opacity:0.04;filter:blur(0);
+}
+.bl1{top:-60px;right:-40px;width:380px;}
+.bl2{bottom:-80px;left:-60px;width:300px;transform:rotate(180deg);}
+
+.bg-glow{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);}
+.bg1{width:500px;height:400px;background:rgba(45,90,61,0.18);top:-80px;left:-100px;}
+.bg2{width:400px;height:400px;background:rgba(200,169,106,0.07);bottom:0;right:-80px;}
+.bg3{width:300px;height:300px;background:rgba(45,90,61,0.1);top:40%;right:10%;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 5rem;
+  background:rgba(8,10,6,0.82);
+  backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border2);
+}
+.nav-logo{
+  font-family:'Libre Baskerville',serif;font-size:1.05rem;font-weight:400;
+  letter-spacing:0.05em;color:var(--text);
+}
+.nav-logo span{font-style:italic;color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--text3);
+  font-family:'Courier Prime',monospace;font-size:0.63rem;
+  letter-spacing:0.16em;text-transform:uppercase;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold);}
+
+/* ── HERO ── */
+main{position:relative;z-index:1;}
+.hero{
+  min-height:100vh;display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  align-items:center;gap:0;
+  position:relative;overflow:hidden;
+}
+
+/* left */
+.hero-left{padding:8rem 4rem 5rem 5rem;position:relative;}
+
+.hero-eyebrow{
+  display:flex;align-items:center;gap:0.85rem;
+  margin-bottom:2.25rem;
+  font-family:'Courier Prime',monospace;font-size:0.62rem;
+  color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;
+  opacity:0;animation:up 0.7s ease 0.2s forwards;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);opacity:0.6;}
+
+.hero-name{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(3.2rem,6.5vw,6.5rem);
+  font-weight:700;line-height:0.92;letter-spacing:-0.025em;
+  margin-bottom:0.6rem;
+  opacity:0;animation:up 0.75s ease 0.35s forwards;
+}
+.hero-name .line1{display:block;color:var(--text);}
+.hero-name .line2{display:block;font-style:italic;font-weight:400;color:var(--gold);}
+
+.hero-sub{
+  font-family:'Courier Prime',monospace;font-size:0.7rem;
+  color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:2rem;
+  opacity:0;animation:up 0.7s ease 0.5s forwards;
+}
+
+.hero-desc{
+  max-width:440px;font-size:1rem;color:var(--text2);line-height:1.85;
+  margin-bottom:2.75rem;
+  border-left:2px solid var(--green2);padding-left:1.25rem;
+  opacity:0;animation:up 0.7s ease 0.65s forwards;
+}
+
+.hero-cta{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;animation:up 0.7s ease 0.8s forwards;
+}
+
+.btn-forest{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.9rem 2rem;
+  background:var(--green);color:var(--beige);
+  text-decoration:none;
+  font-family:'Courier Prime',monospace;font-size:0.68rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  border-radius:2px;transition:background 0.2s,transform 0.15s;
+  box-shadow:0 4px 20px rgba(45,90,61,0.3);
+}
+.btn-forest:hover{background:var(--green2);transform:translateY(-2px);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.9rem 2rem;border:1px solid var(--border);
+  color:var(--text2);text-decoration:none;
+  font-family:'Courier Prime',monospace;font-size:0.68rem;
+  letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;
+  transition:border-color 0.2s,color 0.2s,transform 0.15s;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+/* right panel */
+.hero-right{
+  position:relative;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:6rem 4rem 4rem 2rem;
+}
+.hero-right-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,var(--forest) 0%,var(--ink2) 60%,var(--ink) 100%);
+  clip-path:polygon(6% 0%,100% 0%,100% 100%,0% 100%);
+  border-left:1px solid rgba(45,90,61,0.3);
+}
+.profile-stack{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:1.25rem;
+  width:100%;
+}
+
+/* profile frame */
+.profile-frame{
+  width:240px;height:300px;
+  background:var(--ink3);
+  border:1px solid rgba(200,169,106,0.2);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.profile-frame::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.profile-frame img{width:100%;height:100%;object-fit:cover;}
+.profile-ph{
+  display:flex;flex-direction:column;align-items:center;gap:0.75rem;
+  font-family:'Courier Prime',monospace;font-size:0.55rem;
+  color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;text-align:center;
+}
+.profile-ph svg{width:28px;height:28px;stroke:var(--text3);opacity:0.35;}
+
+/* identity tag below photo */
+.id-tag{
+  background:rgba(8,10,6,0.9);
+  border:1px solid var(--border);
+  padding:1rem 1.5rem;width:100%;text-align:center;
+}
+.id-tag-name{
+  font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;
+  color:var(--text);margin-bottom:0.3rem;
+}
+.id-tag-role{
+  font-family:'Courier Prime',monospace;font-size:0.58rem;
+  color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;
+}
+
+/* floating cards */
+.float-card{
+  position:absolute;
+  background:rgba(8,10,6,0.9);border:1px solid var(--border);
+  padding:0.75rem 1.1rem;white-space:nowrap;border-radius:2px;
+}
+.fc-a{top:80px;left:-70px;animation:floatY 5s ease-in-out infinite;}
+.fc-b{bottom:120px;right:-60px;animation:floatY 6.5s ease-in-out 1s infinite;}
+.fc-c{bottom:60px;left:-50px;animation:floatY 4.5s ease-in-out 0.5s infinite;}
+.fc-lbl{font-family:'Courier Prime',monospace;font-size:0.5rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:2px;opacity:0.75;}
+.fc-val{font-family:'Libre Baskerville',serif;font-size:0.9rem;color:var(--text);}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* quote card bottom of hero-left */
+.hero-quote{
+  position:absolute;bottom:2.5rem;left:5rem;max-width:340px;
+  background:rgba(8,10,6,0.9);
+  border:1px solid var(--border);
+  border-left:3px solid var(--green2);
+  padding:1.1rem 1.4rem;
+  opacity:0;animation:up 0.7s ease 1.2s forwards;
+}
+.hero-quote p{
+  font-family:'Libre Baskerville',serif;font-style:italic;
+  font-size:0.85rem;color:var(--text2);line-height:1.65;
+}
+.hero-quote cite{
+  display:block;margin-top:0.5rem;
+  font-family:'Courier Prime',monospace;font-size:0.52rem;
+  color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;font-style:normal;
+}
+
+/* ── SECTION COMMONS ── */
+section{position:relative;border-top:1px solid var(--border2);}
+.sec-inner{max-width:1120px;margin:0 auto;padding:7rem 5rem;}
+
+.sec-eyebrow{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;}
+.se-num{font-family:'Courier Prime',monospace;font-size:0.58rem;color:var(--green2);letter-spacing:0.25em;}
+.se-line{width:22px;height:1px;background:var(--green2);opacity:0.6;}
+.se-label{font-family:'Courier Prime',monospace;font-size:0.58rem;color:var(--text3);letter-spacing:0.2em;text-transform:uppercase;}
+
+.sec-title{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(2rem,4.5vw,3.5rem);font-weight:400;
+  line-height:1.05;letter-spacing:-0.02em;margin-bottom:4rem;
+}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-title .ghost{color:transparent;-webkit-text-stroke:1px rgba(90,138,106,0.2);}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:start;}
+.about-text{font-size:0.97rem;color:var(--text2);line-height:1.9;}
+.about-text p+p{margin-top:1rem;}
+.about-text strong{color:var(--text);font-weight:400;}
+
+.araneri-box{
+  margin-top:2rem;padding:1.5rem 1.75rem;
+  background:rgba(45,90,61,0.08);
+  border:1px solid rgba(45,90,61,0.25);border-radius:2px;
+  border-left:3px solid var(--green2);
+}
+.ab-label{font-family:'Courier Prime',monospace;font-size:0.56rem;color:var(--green2);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:0.6rem;}
+.araneri-box p{font-size:0.9rem;color:var(--text2);line-height:1.8;font-style:italic;}
+
+/* skills panel */
+.sp-group{margin-bottom:2rem;}
+.sp-label{
+  font-family:'Courier Prime',monospace;font-size:0.56rem;
+  color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:0.85rem;display:flex;align-items:center;gap:0.75rem;
+}
+.sp-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:50px;}
+.skills-wrap{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.sk{
+  padding:0.38rem 0.85rem;font-size:0.8rem;border-radius:2px;
+  cursor:default;transition:all 0.22s;
+}
+.sk.eng{background:rgba(45,90,61,0.12);border:1px solid rgba(45,90,61,0.3);color:var(--sage);}
+.sk.eng:hover{background:rgba(45,90,61,0.22);transform:translateY(-2px);}
+.sk.cre{background:var(--tag-bg);border:1px solid rgba(200,169,106,0.25);color:var(--gold);}
+.sk.cre:hover{background:rgba(200,169,106,0.18);transform:translateY(-2px);}
+
+.tools-section{margin-top:0.5rem;}
+.tools-grid{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.tool{
+  padding:0.32rem 0.75rem;
+  background:rgba(255,255,255,0.03);border:1px solid var(--border2);
+  font-family:'Courier Prime',monospace;font-size:0.6rem;
+  color:var(--text3);letter-spacing:0.04em;border-radius:2px;transition:all 0.2s;
+}
+.tool:hover{background:var(--gold-gl);color:var(--gold);border-color:var(--border);}
+
+/* dual identity block */
+.dual-identity{
+  margin-top:4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;
+}
+.di-card{
+  padding:1.75rem;
+  background:var(--ink2);border:1px solid var(--border2);border-radius:4px;
+  position:relative;overflow:hidden;transition:border-color 0.25s,transform 0.2s;
+}
+.di-card:hover{border-color:var(--border);transform:translateY(-3px);}
+.di-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--green2),transparent);
+}
+.di-card:last-child::before{
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.di-icon{
+  width:38px;height:38px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:1rem;
+}
+.di-icon svg{width:20px;height:20px;}
+.di-eng .di-icon{background:rgba(45,90,61,0.15);border:1px solid rgba(45,90,61,0.3);}
+.di-eng .di-icon svg{stroke:var(--sage);}
+.di-cre .di-icon{background:var(--gold-gl);border:1px solid rgba(200,169,106,0.25);}
+.di-cre .di-icon svg{stroke:var(--gold);}
+.di-title{font-family:'Libre Baskerville',serif;font-size:1rem;color:var(--text);margin-bottom:0.4rem;}
+.di-desc{font-size:0.82rem;color:var(--text3);line-height:1.6;}
+
+/* ── PROJECTS ── */
+#projects{background:var(--ink2);}
+.proj-stack{display:flex;flex-direction:column;gap:1.5px;}
+.proj{
+  display:grid;grid-template-columns:0.55fr 1fr;
+  background:var(--ink);border:1px solid var(--border2);
+  overflow:hidden;transition:all 0.3s;
+}
+.proj:hover{border-color:var(--border);transform:translateX(4px);}
+.proj.featured{grid-template-columns:0.45fr 1fr;}
+.proj.ongoing{border-color:rgba(200,169,106,0.12);}
+
+/* visual */
+.pv{
+  min-height:200px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.6rem;
+  border-right:1px solid var(--border2);
+}
+.proj.featured .pv{min-height:240px;}
+
+/* nature-tech gradient backgrounds */
+.proj[data-c="forest"]  .pv{background:linear-gradient(135deg,#0a1a0e,#0f2214,#080a06);}
+.proj[data-c="gold"]    .pv{background:linear-gradient(135deg,#1a1408,#201808,#080a06);}
+.proj[data-c="sage"]    .pv{background:linear-gradient(135deg,#0c1a10,#101e14,#080a06);}
+.proj[data-c="deep"]    .pv{background:linear-gradient(135deg,#0a0c08,#0f1210,#080a06);}
+.proj[data-c="earth"]   .pv{background:linear-gradient(135deg,#161008,#1c140a,#080a06);}
+
+.pv-glow{
+  position:absolute;width:180px;height:180px;border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(55px);opacity:0.2;
+}
+.proj[data-c="forest"] .pv-glow{background:var(--green);}
+.proj[data-c="gold"]   .pv-glow{background:var(--gold);}
+.proj[data-c="sage"]   .pv-glow{background:var(--sage);}
+.proj[data-c="deep"]   .pv-glow{background:var(--green2);}
+.proj[data-c="earth"]  .pv-glow{background:#8a6a40;}
+
+.dot-grid{
+  position:absolute;inset:0;opacity:0.12;
+  background-image:radial-gradient(circle,var(--text3) 1px,transparent 1px);
+  background-size:20px 20px;
+}
+.pv-icon{position:relative;z-index:1;font-size:2rem;opacity:0.18;}
+.pv-badge{
+  position:absolute;top:12px;left:14px;z-index:2;
+  padding:3px 10px;
+  background:rgba(8,10,6,0.75);border:1px solid var(--border);
+  font-family:'Courier Prime',monospace;font-size:0.5rem;
+  color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+  backdrop-filter:blur(6px);
+}
+.pv-ongoing-badge{
+  position:absolute;top:12px;right:12px;z-index:2;
+  display:flex;align-items:center;gap:4px;
+  padding:3px 8px;
+  background:rgba(8,10,6,0.75);border:1px solid rgba(200,169,106,0.3);
+  font-family:'Courier Prime',monospace;font-size:0.48rem;
+  color:var(--gold);letter-spacing:0.08em;border-radius:2px;
+}
+.pv-ongoing-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pls 2s ease-in-out infinite;}
+@keyframes pls{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+/* info */
+.pb{padding:2rem 2.5rem;display:flex;flex-direction:column;justify-content:center;}
+.p-meta{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;}
+.p-num{font-family:'Courier Prime',monospace;font-size:0.5rem;color:var(--text3);letter-spacing:0.2em;}
+.p-badge{
+  font-family:'Courier Prime',monospace;font-size:0.5rem;
+  color:var(--green2);background:rgba(45,90,61,0.1);
+  border:1px solid rgba(45,90,61,0.25);
+  padding:0.2rem 0.55rem;border-radius:2px;letter-spacing:0.08em;text-transform:uppercase;
+}
+.p-badge.ongoing{color:var(--gold);background:var(--gold-gl);border-color:rgba(200,169,106,0.25);}
+.p-title{
+  font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:400;
+  color:var(--text);margin-bottom:0.65rem;line-height:1.25;
+}
+.p-desc{font-size:0.83rem;line-height:1.8;color:var(--text3);margin-bottom:1rem;}
+.p-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.pt{
+  padding:0.25rem 0.65rem;
+  background:var(--tag-bg);border:1px solid rgba(200,169,106,0.2);
+  font-family:'Courier Prime',monospace;font-size:0.5rem;
+  color:var(--tag-txt);letter-spacing:0.05em;border-radius:2px;
+}
+.pt.green{background:rgba(45,90,61,0.1);border-color:rgba(45,90,61,0.25);color:var(--sage);}
+
+/* ── DUAL IDENTITY STRIP ── */
+.identity-strip{
+  padding:5rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;border-top:1px solid var(--border2);
+}
+.is-panel{
+  padding:3.5rem 4rem;position:relative;overflow:hidden;
+}
+.is-eng{background:rgba(26,48,32,0.5);}
+.is-cre{background:rgba(20,16,8,0.6);}
+.is-panel-label{
+  font-family:'Courier Prime',monospace;font-size:0.6rem;
+  letter-spacing:0.22em;text-transform:uppercase;margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.is-eng .is-panel-label{color:var(--green2);}
+.is-cre .is-panel-label{color:var(--gold);}
+.is-panel-label::before{content:'';width:18px;height:1px;}
+.is-eng .is-panel-label::before{background:var(--green2);}
+.is-cre .is-panel-label::before{background:var(--gold);}
+.is-panel-title{
+  font-family:'Libre Baskerville',serif;font-size:1.8rem;
+  font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem;
+}
+.is-panel-desc{font-size:0.9rem;color:var(--text2);line-height:1.8;max-width:380px;}
+.is-panel-list{
+  margin-top:1.5rem;display:flex;flex-direction:column;gap:0.5rem;
+  font-family:'Courier Prime',monospace;font-size:0.72rem;color:var(--text3);
+  letter-spacing:0.04em;
+}
+.is-panel-list li{display:flex;align-items:center;gap:0.6rem;list-style:none;}
+.is-eng .is-panel-list li::before{content:'◆';color:var(--green2);font-size:0.5rem;opacity:0.7;}
+.is-cre .is-panel-list li::before{content:'◆';color:var(--gold);font-size:0.5rem;opacity:0.7;}
+
+/* ── MOTTO ── */
+.motto-band{
+  text-align:center;padding:5.5rem 5rem;
+  border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);
+  background:var(--ink2);position:relative;
+}
+.motto-deco{
+  width:40px;height:1px;background:var(--gold);opacity:0.4;margin:1.25rem auto;
+}
+.motto-text{
+  font-family:'Libre Baskerville',serif;font-style:italic;
+  font-size:clamp(1.4rem,3.5vw,2.4rem);font-weight:400;
+  line-height:1.5;color:var(--text);max-width:700px;margin:0 auto;
+}
+.motto-text em{font-style:normal;color:var(--gold);}
+.motto-attr{font-family:'Courier Prime',monospace;font-size:0.6rem;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;}
+
+/* ── CONTACT ── */
+#contact{}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.contact-big{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(2.8rem,5vw,5rem);font-weight:400;
+  line-height:0.95;letter-spacing:-0.02em;margin-bottom:1.25rem;
+}
+.contact-big em{font-style:italic;color:var(--green2);}
+.contact-sub{font-size:0.95rem;line-height:1.8;color:var(--text2);max-width:360px;margin-bottom:2rem;}
+.soc-links{display:flex;flex-direction:column;gap:0.85rem;}
+.soc-a{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.5rem;
+  background:var(--ink2);border:1px solid var(--border2);
+  text-decoration:none;color:var(--text2);
+  font-size:0.88rem;border-radius:2px;
+  transition:all 0.25s;position:relative;overflow:hidden;
+}
+.soc-a::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--green2);transform:scaleY(0);transition:transform 0.25s;transform-origin:bottom;
+}
+.soc-a:hover{color:var(--gold);background:var(--gold-gl);border-color:var(--border);}
+.soc-a:hover::before{transform:scaleY(1);}
+.soc-a svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+.soc-handle{margin-left:auto;font-family:'Courier Prime',monospace;font-size:0.58rem;color:var(--text3);letter-spacing:0.04em;}
+.soc-a:hover .soc-handle{color:var(--gold);}
+
+.contact-card{
+  padding:2.5rem;background:var(--ink2);
+  border:1px solid var(--border);border-radius:4px;position:relative;overflow:hidden;
+}
+.contact-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--green2),var(--gold));
+}
+.cc-tag{font-family:'Courier Prime',monospace;font-size:0.56rem;color:var(--green2);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:1rem;}
+.cc-body{font-family:'Libre Baskerville',serif;font-style:italic;font-size:1.02rem;color:var(--text2);line-height:1.8;}
+.cc-body strong{font-style:normal;color:var(--text);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--black);padding:2rem 5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border2);position:relative;z-index:1;
+}
+footer p{font-family:'Courier Prime',monospace;font-size:0.56rem;color:var(--text3);letter-spacing:0.1em;}
+.f-brand{font-family:'Libre Baskerville',serif;font-style:italic;font-size:1rem;color:rgba(45,90,61,0.5);}
+
+/* ── ANIMATIONS ── */
+@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:0.1s}.rd2{transition-delay:0.2s}.rd3{transition-delay:0.3s}.rd4{transition-delay:0.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-left{padding:7rem 1.5rem 4rem;}
+  .hero-right{display:none;}
+  .hero-quote{position:static;margin-top:2rem;left:auto;bottom:auto;}
+  .sec-inner{padding:5rem 1.5rem;}
+  .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .dual-identity{grid-template-columns:1fr;}
+  .proj{grid-template-columns:1fr;}.proj.featured{grid-template-columns:1fr;}
+  .pv{min-height:160px;border-right:none;border-bottom:1px solid var(--border2);}
+  .proj.featured .pv{min-height:160px;}
+  .identity-strip{grid-template-columns:1fr;gap:0;}
+  .is-panel{padding:3rem 1.5rem;}
+  .contact-layout{grid-template-columns:1fr;gap:3rem;}
+  .motto-band{padding:4rem 1.5rem;}
+  footer{flex-direction:column;gap:0.75rem;padding:2rem 1.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curR"></div>
+
+<!-- Decorative leaf SVGs -->
+<svg class="bg-leaf bl1" viewBox="0 0 380 500" fill="none" aria-hidden="true">
+  <path d="M190 480C150 420 60 350 40 260C20 170 70 80 190 30C310 80 360 170 340 260C320 350 230 420 190 480Z" fill="#2d5a3d"/>
+  <path d="M190 480L190 30" stroke="#2d5a3d" stroke-width="1.5"/>
+  <path d="M190 370C130 340 70 300 55 240" stroke="#2d5a3d" stroke-width="1"/>
+  <path d="M190 280C250 250 310 210 325 150" stroke="#2d5a3d" stroke-width="1"/>
+</svg>
+<svg class="bg-leaf bl2" viewBox="0 0 300 420" fill="none" aria-hidden="true">
+  <path d="M150 400C120 350 50 290 35 220C20 150 55 70 150 25C245 70 280 150 265 220C250 290 180 350 150 400Z" fill="#1a3020"/>
+  <path d="M150 400L150 25" stroke="#1a3020" stroke-width="1.5"/>
+</svg>
+
+<!-- BG glows -->
+<div class="bg-glow bg1"></div>
+<div class="bg-glow bg2"></div>
+<div class="bg-glow bg3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Kamala <span>Saraswathi</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">EIE · MIT · Araneri</div>
+
+    <h1 class="hero-name">
+      <span class="line1">Kamala</span>
+      <span class="line2">Saraswathi K</span>
+    </h1>
+
+    <div class="hero-sub">Engineer &nbsp;·&nbsp; Technical Writer &nbsp;·&nbsp; Designer</div>
+
+    <p class="hero-desc">
+      Blending engineering, creativity, and storytelling to build meaningful technical experiences.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn-forest">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        View Projects
+      </a>
+      <a href="#contact" class="btn-outline">Connect</a>
+    </div>
+
+    <div class="hero-quote">
+      <p>"Creativity and engineering together can turn ideas into impact."</p>
+      <cite>— Kamala Saraswathi K</cite>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="profile-stack">
+      <!-- Floating stat cards -->
+      <div class="float-card fc-a">
+        <div class="fc-lbl">Field</div>
+        <div class="fc-val">EIE · MIT</div>
+      </div>
+      <div class="float-card fc-b">
+        <div class="fc-lbl">Focus</div>
+        <div class="fc-val">Embedded · IoT</div>
+      </div>
+      <div class="float-card fc-c">
+        <div class="fc-lbl">Team</div>
+        <div class="fc-val">Araneri</div>
+      </div>
+
+      <!-- Profile photo -->
+      <div class="profile-frame">
+        <!--
+          ADD PROFILE PHOTO:
+          <img src="kamala-photo.jpg" alt="Kamala Saraswathi K"/>
+          Remove the profile-ph div below once photo is added.
+        -->
+        <div class="profile-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>Add Profile Photo</span>
+        </div>
+      </div>
+
+      <div class="id-tag">
+        <div class="id-tag-name">Kamala Saraswathi K</div>
+        <div class="id-tag-role">Engineer · Writer · Designer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">
+      <span class="se-num">001</span><div class="se-line"></div>
+      <span class="se-label">About Me</span>
+    </div>
+    <h2 class="sec-title reveal rd1">
+      Where <em>precision</em> meets<br/>creative <span class="ghost">expression.</span>
+    </h2>
+
+    <div class="about-grid">
+      <div>
+        <div class="about-text">
+          <p class="reveal rd1">I am an Electronics and Instrumentation Engineering student at <strong>Madras Institute of Technology</strong> with a strong interest in embedded systems, automation, technical design, and creative communication.</p>
+          <p class="reveal rd2">I enjoy working on projects that combine technology with real-world impact — especially in areas like <strong>smart systems, instrumentation, and hardware-software integration.</strong></p>
+          <p class="reveal rd3">Apart from engineering, I love <strong>technical writing, newsletter creation, and visual design</strong> — these help me present ideas in more engaging and understandable ways. My approach is detail-oriented, collaborative, and creative.</p>
+        </div>
+        <div class="araneri-box reveal rd4">
+          <div class="ab-label">// Araneri</div>
+          <p>"Being a part of Araneri excites me because it creates space for creativity, individuality, and meaningful storytelling. My favourite thing about Araneri is how it encourages people from different domains to express themselves uniquely while still feeling connected as a team."</p>
+        </div>
+      </div>
+
+      <div id="skills">
+        <div class="sp-group reveal rd1">
+          <div class="sp-label">Engineering</div>
+          <div class="skills-wrap">
+            <span class="sk eng">Embedded Systems</span>
+            <span class="sk eng">PCB Design Basics</span>
+            <span class="sk eng">MATLAB Simulation</span>
+            <span class="sk eng">Problem Solving</span>
+          </div>
+        </div>
+        <div class="sp-group reveal rd2">
+          <div class="sp-label">Creative &amp; Communication</div>
+          <div class="skills-wrap">
+            <span class="sk cre">Technical Writing</span>
+            <span class="sk cre">Content Creation</span>
+            <span class="sk cre">Canva Designing</span>
+            <span class="sk cre">Public Speaking</span>
+            <span class="sk cre">Team Collaboration</span>
+          </div>
+        </div>
+        <div class="tools-section reveal rd3">
+          <div class="sp-label">Tools &amp; Software</div>
+          <div class="tools-grid">
+            <span class="tool">MATLAB</span>
+            <span class="tool">Proteus</span>
+            <span class="tool">KiCad</span>
+            <span class="tool">Autodesk Fusion</span>
+            <span class="tool">LabVIEW</span>
+            <span class="tool">Flutter</span>
+            <span class="tool">VS Code</span>
+            <span class="tool">Canva</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dual identity cards -->
+    <div class="dual-identity">
+      <div class="di-card di-eng reveal rd1">
+        <div class="di-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        </div>
+        <div class="di-title">The Engineer</div>
+        <div class="di-desc">Building smart systems, writing firmware, designing circuits — grounded in the precision of instrumentation and automation.</div>
+      </div>
+      <div class="di-card di-cre reveal rd2">
+        <div class="di-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="di-title">The Creator</div>
+        <div class="di-desc">Writing technical newsletters, designing visuals, and telling stories that make complex engineering accessible and engaging.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL IDENTITY STRIP -->
+<div class="identity-strip">
+  <div class="is-panel is-eng">
+    <div class="is-panel-label">Engineering Side</div>
+    <h3 class="is-panel-title">Systems &amp;<br/>Hardware</h3>
+    <p class="is-panel-desc">Designing circuits, writing embedded code, and building sensor systems that interact with the physical world.</p>
+    <ul class="is-panel-list">
+      <li>LoRa &amp; STM32 communication</li>
+      <li>MATLAB signal simulation</li>
+      <li>PCB &amp; hardware design</li>
+      <li>Smart IoT systems</li>
+    </ul>
+  </div>
+  <div class="is-panel is-cre">
+    <div class="is-panel-label">Creative Side</div>
+    <h3 class="is-panel-title">Writing &amp;<br/>Storytelling</h3>
+    <p class="is-panel-desc">Communicating ideas through newsletters, visual design, and content that connects engineering to people.</p>
+    <ul class="is-panel-list">
+      <li>Technical writing &amp; newsletters</li>
+      <li>Visual design with Canva</li>
+      <li>Content creation &amp; strategy</li>
+      <li>Public speaking &amp; communication</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">
+      <span class="se-num">002</span><div class="se-line"></div>
+      <span class="se-label">Projects &amp; Works</span>
+    </div>
+    <h2 class="sec-title reveal rd1">
+      Ideas <em>built</em><br/>&amp; <span class="ghost">launched.</span>
+    </h2>
+
+    <div class="proj-stack">
+
+      <!-- 1 — LoRa STM32 (featured) -->
+      <div class="proj featured reveal rd1" data-c="forest">
+        <div class="pv">
+          <div class="dot-grid"></div>
+          <div class="pv-glow"></div>
+          <div class="pv-icon">📡</div>
+          <div class="pv-badge">LoRa · STM32 · RF</div>
+        </div>
+        <div class="pb">
+          <div class="p-meta">
+            <span class="p-num">FEATURED / 01</span>
+            <span class="p-badge">Wireless Comms</span>
+          </div>
+          <div class="p-title">Sensor Data Transmission using LoRa and STM32</div>
+          <div class="p-desc">Worked on wireless sensor data communication using LoRa technology interfaced with STM32 microcontrollers — targeting long-range transmission applications where traditional WiFi or Bluetooth fall short. Explored low-power, wide-area communication architecture for smart sensor networks.</div>
+          <div class="p-tags">
+            <span class="pt green">STM32</span>
+            <span class="pt green">LoRa</span>
+            <span class="pt">Wireless Comms</span>
+            <span class="pt">Sensor Networks</span>
+            <span class="pt">Embedded C</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 — Morse Code -->
+      <div class="proj reveal rd2" data-c="gold">
+        <div class="pv">
+          <div class="dot-grid"></div>
+          <div class="pv-glow"></div>
+          <div class="pv-icon">— · —</div>
+          <div class="pv-badge">MATLAB · Signals</div>
+        </div>
+        <div class="pb">
+          <div class="p-meta">
+            <span class="p-num">PROJECT / 02</span>
+            <span class="p-badge">Simulation</span>
+          </div>
+          <div class="p-title">Morse Code Translator Simulation</div>
+          <div class="p-desc">Developed a MATLAB-based mini project using signals and systems concepts to simulate Morse code translation — converting text to Morse signal patterns and visualising the output waveforms.</div>
+          <div class="p-tags">
+            <span class="pt green">MATLAB</span>
+            <span class="pt">Signals &amp; Systems</span>
+            <span class="pt">Simulation</span>
+            <span class="pt">DSP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Metal Detector -->
+      <div class="proj reveal rd3" data-c="sage">
+        <div class="pv">
+          <div class="dot-grid"></div>
+          <div class="pv-glow"></div>
+          <div class="pv-icon">🔩</div>
+          <div class="pv-badge">Hardware · Inductance</div>
+        </div>
+        <div class="pb">
+          <div class="p-meta">
+            <span class="p-num">PROJECT / 03</span>
+            <span class="p-badge">Hardware</span>
+          </div>
+          <div class="p-title">Metal Detector Circuit</div>
+          <div class="p-desc">Built a mini hardware project capable of differentiating ferromagnetic and non-ferromagnetic materials using varying inductance principles — demonstrating practical application of electromagnetic theory.</div>
+          <div class="p-tags">
+            <span class="pt green">Inductance Sensing</span>
+            <span class="pt">Circuit Design</span>
+            <span class="pt">Hardware</span>
+            <span class="pt">Electromagnetics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Smart Lane (Ongoing) -->
+      <div class="proj ongoing reveal rd1" data-c="deep">
+        <div class="pv">
+          <div class="dot-grid"></div>
+          <div class="pv-glow"></div>
+          <div class="pv-icon">🚑</div>
+          <div class="pv-badge">Smart Traffic · IoT</div>
+          <div class="pv-ongoing-badge">
+            <div class="pv-ongoing-dot"></div>
+            Ongoing
+          </div>
+        </div>
+        <div class="pb">
+          <div class="p-meta">
+            <span class="p-num">PROJECT / 04</span>
+            <span class="p-badge ongoing">In Progress</span>
+          </div>
+          <div class="p-title">Smart Lane Clearance System for Emergency Vehicles</div>
+          <div class="p-desc">Currently working on an intelligent traffic management system designed to help emergency vehicles move efficiently through traffic — reducing response times through automated lane prioritisation and signal coordination.</div>
+          <div class="p-tags">
+            <span class="pt green">IoT</span>
+            <span class="pt">Smart Traffic</span>
+            <span class="pt">Embedded Systems</span>
+            <span class="pt">Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — APMC Queue (Ongoing) -->
+      <div class="proj ongoing reveal rd2" data-c="earth">
+        <div class="pv">
+          <div class="dot-grid"></div>
+          <div class="pv-glow"></div>
+          <div class="pv-icon">📊</div>
+          <div class="pv-badge">Real-time Analytics</div>
+          <div class="pv-ongoing-badge">
+            <div class="pv-ongoing-dot"></div>
+            Ongoing
+          </div>
+        </div>
+        <div class="pb">
+          <div class="p-meta">
+            <span class="p-num">PROJECT / 05</span>
+            <span class="p-badge ongoing">In Progress</span>
+          </div>
+          <div class="p-title">Real-Time Queue Management &amp; Market Intelligence for APMC Markets</div>
+          <div class="p-desc">Contributing to a project aimed at improving market efficiency through smart queue monitoring and real-time analytics — building infrastructure that brings data-driven intelligence to agricultural trading systems.</div>
+          <div class="p-tags">
+            <span class="pt green">Real-time Analytics</span>
+            <span class="pt">Queue Management</span>
+            <span class="pt">IoT</span>
+            <span class="pt">Market Intelligence</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MOTTO -->
+<div class="motto-band">
+  <div class="motto-deco"></div>
+  <p class="motto-text">
+    "Creativity and <em>engineering</em> together<br/>can turn ideas into <em>impact.</em>"
+  </p>
+  <div class="motto-deco"></div>
+  <div class="motto-attr">— Kamala Saraswathi K</div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">
+      <span class="se-num">003</span><div class="se-line"></div>
+      <span class="se-label">Contact</span>
+    </div>
+    <div class="contact-layout">
+      <div>
+        <h2 class="contact-big reveal rd1">
+          Let's<br/><em>build</em><br/>together.
+        </h2>
+        <p class="contact-sub reveal rd2">Open to collaborations in embedded systems, technical writing, design projects, and meaningful conversations about engineering with purpose.</p>
+
+        <div class="soc-links reveal rd3">
+          <a href="https://linkedin.com/in/kamala-saraswathi-k-606942287" target="_blank" rel="noopener" class="soc-a">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+            <span class="soc-handle">kamala-saraswathi-k-606942287</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal rd3">
+        <div class="contact-card">
+          <div class="cc-tag">// Currently</div>
+          <div class="cc-body">
+            <strong>EIE Student &amp; Araneri Team Member</strong><br/><br/>
+            Balancing embedded systems projects with <strong>technical writing, design,</strong> and meaningful storytelling.<br/><br/>
+            Open to collaborations in <strong>smart systems, IoT, content creation,</strong> and cross-domain creative work.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2025 Kamala Saraswathi K — All rights reserved</p>
+  <div class="f-brand">Araneri</div>
+  <p>Built with precision &amp; creativity</p>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*0.13;ry+=(my-ry)*0.13;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.proj,.sk,.tool,.di-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';curR.style.transform='translate(-50%,-50%) scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';curR.style.transform='translate(-50%,-50%) scale(1)';});
+});
+
+/* ── SCROLL REVEAL ── */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -15,6 +15,10 @@ This repository contains a collection of portfolio pages created by the Araneri 
 - `Prasanth portfolio.html`
 - `Praveena portfolio.html`
 - `Shrijesh portfolio.html`
+- `Hariprasath portfolio.html`
+- `Kamala portfolio.html`
+- `Niranjanaa portfolio.html`
+- `Pavithra portfolio.html`
 
 ## Usage
 
