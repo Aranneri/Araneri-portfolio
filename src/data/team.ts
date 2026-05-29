@@ -1,7 +1,7 @@
 import type { TeamMember } from "@/types";
 import { imagePlaceholders } from "@/data/site";
 
-const portfolioUrl = "https://aranneri.github.io/Araneri-portfolio/";
+const portfolioBaseUrl = "https://aranneri.github.io/Araneri-portfolio";
 
 export const team: readonly TeamMember[] = [
   {
@@ -9,104 +9,104 @@ export const team: readonly TeamMember[] = [
     role: "Portfolio Steward",
     description: "Builds digital stories that carry Araneri's work with clarity.",
     image: imagePlaceholders.butterflies,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Eaknath.html`,
   },
   {
     name: "Ezhiloviya",
     role: "Visual Storyteller",
     description: "Shapes graceful interfaces with a strong eye for detail.",
     image: imagePlaceholders.palmCrafts,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Ezhiloviya.html`,
   },
   {
     name: "Guruaishwarya",
     role: "Experience Designer",
     description: "Connects thoughtful design with purposeful team storytelling.",
     image: imagePlaceholders.palmLeaves,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Guruaishwarya.html`,
   },
   {
     name: "Hariprasath",
     role: "Web Craftsman",
     description: "Turns ideas into focused, usable digital experiences.",
     image: imagePlaceholders.palmRoots,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Hariprasath.html`,
   },
   {
     name: "Kamala",
     role: "Creative Technologist",
     description: "Blends creative direction with practical web execution.",
     image: imagePlaceholders.palmTrunk,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Kamala.html`,
   },
   {
     name: "Kannan",
     role: "Interface Builder",
     description: "Creates clean, dependable pages for modern web journeys.",
     image: imagePlaceholders.palmSeeds,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Kannan.html`,
   },
   {
     name: "Kishore",
     role: "Frontend Maker",
     description: "Builds polished interactions with steady technical care.",
     image: imagePlaceholders.iceApple,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Kishore.html`,
   },
   {
     name: "Madhumitha",
     role: "Content Designer",
     description: "Frames each portfolio with warmth, rhythm, and intent.",
     image: imagePlaceholders.emeraldDove,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Madhumitha.html`,
   },
   {
     name: "Mahaswetha",
     role: "Digital Curator",
     description: "Organizes personal work into clear and memorable narratives.",
     image: imagePlaceholders.butterflies,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Mahaswetha.html`,
   },
   {
     name: "Murugesan",
     role: "Product Thinker",
     description: "Connects practical problem solving with careful presentation.",
     image: imagePlaceholders.palmCrafts,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Murugesan.html`,
   },
   {
     name: "Niranjanaa",
     role: "Design Researcher",
     description: "Brings observation, structure, and craft into every page.",
     image: imagePlaceholders.palmLeaves,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Niranjanaa.html`,
   },
   {
     name: "Pavithra",
     role: "Creative Developer",
     description: "Builds expressive portfolio moments with a clean digital touch.",
     image: imagePlaceholders.palmRoots,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Pavithra.html`,
   },
   {
     name: "Prasanth",
     role: "Technical Storyteller",
     description: "Presents technical work through simple and confident pages.",
     image: imagePlaceholders.palmTrunk,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Prasanth.html`,
   },
   {
     name: "Praveena",
     role: "Portfolio Designer",
     description: "Crafts personal identity into focused web presentation.",
     image: imagePlaceholders.palmSeeds,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Praveena.html`,
   },
   {
     name: "Shrijesh",
     role: "Web Story Builder",
     description: "Brings the team portfolio hub together with clear direction.",
     image: imagePlaceholders.iceApple,
-    portfolioUrl,
+    portfolioUrl: `${portfolioBaseUrl}/Shrijesh.html`,
   },
 ];
