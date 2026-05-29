@@ -4,25 +4,39 @@ This repository contains a collection of portfolio pages created by the Araneri 
 
 ## Portfolio Pages
 
-- `Eaknath portfolio.html`
-- `Ezhiloviya portfolio.html`
-- `Guruaishwarya portfolio.html`
-- `Kannan portfolio.html`
-- `Kishore portfolio.html`
-- `Madhumitha portfolio.html`
-- `Mahaswetha portfolio.html`
-- `Murugesan portfolio.html`
-- `Prasanth portfolio.html`
-- `Praveena portfolio.html`
-- `Shrijesh portfolio.html`
-- `Hariprasath portfolio.html`
-- `Kamala portfolio.html`
-- `Niranjanaa portfolio.html`
-- `Pavithra portfolio.html`
+- `Eaknath.html`
+- `Ezhiloviya.html`
+- `Guruaishwarya.html`
+- `Kannan.html`
+- `Kishore.html`
+- `Madhumitha.html`
+- `Mahaswetha.html`
+- `Murugesan.html`
+- `Prasanth.html`
+- `Praveena.html`
+- `Shrijesh.html`
+- `Hariprasath.html`
+- `Kamala.html`
+- `Niranjanaa.html`
+- `Pavithra.html`
 
 ## Usage
 
 Open any of the `.html` files in a web browser to view the corresponding portfolio.
+
+## GitHub Pages Deployment
+
+This repository can be published through GitHub Pages from the repository root. After enabling GitHub Pages, the portfolios are available under the project site URL:
+
+`https://aranneri.github.io/Araneri-portfolio/`
+
+Each member page is accessible directly, for example:
+
+- `https://aranneri.github.io/Araneri-portfolio/Mahaswetha.html`
+- `https://aranneri.github.io/Araneri-portfolio/Eaknath.html`
+- `https://aranneri.github.io/Araneri-portfolio/Guruaishwarya.html`
+
+A homepage is also included at `index.html` to make it easy to browse every portfolio.
 
 ## Notes
 
