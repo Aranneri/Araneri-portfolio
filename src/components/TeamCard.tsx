@@ -23,8 +23,14 @@ export function TeamCard({ member }: TeamCardProps) {
         <CardTitle>{member.name}</CardTitle>
         <CardDescription>{member.role}</CardDescription>
         <p className="text-sm text-sand-200/70">{member.description}</p>
-        <Button asChild size="sm" variant="ghost" className="mt-2 w-fit">
-          <SafeLink href={`/about/team/${toSlug(member.name)}`}>View profile</SafeLink>
+        <Button asChild size="sm" variant="ghost" className="mt-2 w-fit hover:bg-[#ebdcc4]/20">
+          <SafeLink 
+            href={member.portfolioUrl || `https://github.com/Aranneri/Araneri-portfolio`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Portfolio 🦋
+          </SafeLink>
         </Button>
       </CardHeader>
     </Card>

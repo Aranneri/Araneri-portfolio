@@ -87,7 +87,7 @@ export function Navbar() {
         let targetBorder = "rgba(66, 75, 51, 0)";
 
         if (isScrolled) {
-          targetBg = "rgba(243, 232, 214, 0.45)"; // Frosted warm sand glass
+          targetBg = "rgba(243, 232, 214, 0.95)"; // Frosted warm sand glass
           targetBorder = "rgba(66, 75, 51, 0.12)";  // Subtle olive border
         }
 
@@ -104,7 +104,7 @@ export function Navbar() {
   }, [isScrolled]);
 
   return (
-    <header ref={headerRef} className="fixed left-0 right-0 top-0 z-40 w-full">
+    <header ref={headerRef} className="fixed left-0 right-0 top-0 z-50 w-full">
       <div
         ref={panelRef}
         className={cn(

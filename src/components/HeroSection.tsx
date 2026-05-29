@@ -42,7 +42,7 @@ export function HeroSection({ title, subtitle, description, image }: HeroSection
   return (
     <section
       ref={scopeRef}
-      className="relative h-screen min-h-[600px] w-screen left-1/2 -translate-x-1/2 flex items-start justify-center overflow-hidden px-6 lg:px-16 xl:px-24 bg-[var(--bg-primary)] pt-20 pb-4"
+      className="relative min-h-[600px] h-auto lg:h-screen w-screen left-1/2 -translate-x-1/2 flex items-start justify-center overflow-hidden px-6 lg:px-16 xl:px-24 bg-[var(--bg-primary)] pt-20 pb-12 lg:pb-4"
     >
       {/* Background container layout block */}
       <PalmWindAnimation />
@@ -88,14 +88,14 @@ export function HeroSection({ title, subtitle, description, image }: HeroSection
           <div className="hero-actions flex flex-wrap gap-4 pt-1">
             <a
               href="/blogs"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-[#424b33] text-[#ebdcc4] hover:bg-[#2c351e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide bg-[#424b33] text-[#ebdcc4] hover:bg-[#2c351e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:scale-105"
             >
               Explore Our Journey
               <span className="ml-2 inline-block transition-transform duration-300 hover:translate-x-1">→</span>
             </a>
             <a
               href="/about"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-[#424b33]/40 text-[#424b33] hover:border-[#424b33] hover:bg-[#f3e8d6]/50 transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-semibold tracking-wide border border-[#424b33]/40 text-[#424b33] hover:border-[#424b33] hover:bg-[#f3e8d6]/50 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
             >
               Learn More
               <span className="ml-2 inline-block font-sans text-xs">⎋</span>

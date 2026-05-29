@@ -46,6 +46,7 @@ export interface TeamMember {
   readonly role: string;
   readonly description: string;
   readonly image: MediaImage;
+  readonly portfolioUrl?: string;
 }
 
 export interface FaqItem {

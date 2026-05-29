@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { navLinks } from "@/data/site";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { SafeLink } from "@/components/shared/SafeLink";
 
 export function MobileMenu() {
@@ -19,6 +19,8 @@ export function MobileMenu() {
         </Button>
       </DialogTrigger>
       <DialogContent>
+        <DialogTitle className="sr-only">Menu</DialogTitle>
+        <DialogDescription className="sr-only">Navigation menu</DialogDescription>
         <nav className="space-y-4" aria-label="Mobile navigation">
           {navLinks.map((link) => (
             <SafeLink
