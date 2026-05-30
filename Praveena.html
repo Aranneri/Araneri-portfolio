@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Praveena — Developer · Designer · Creative Technologist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Martian+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink: #0a0a0b;
+  --ink2: #111114;
+  --ink3: #18181d;
+  --ink4: #22222a;
+  --smoke: #f5f3ef;
+  --smoke2: #ede9e3;
+  --smoke3: #d6d1c8;
+  --chalk: #ffffff;
+  --gold: #c9a84c;
+  --gold2: #e2c07a;
+  --gold-muted: rgba(201,168,76,0.15);
+  --text: #f0ede8;
+  --text2: #9a9590;
+  --text3: #5a5650;
+  --border: rgba(201,168,76,0.18);
+  --border2: rgba(255,255,255,0.07);
+  --border3: rgba(255,255,255,0.04);
+  --tag-bg: rgba(201,168,76,0.1);
+  --tag-text: #c9a84c;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── CINEMATIC GRAIN ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.55;
+}
+
+/* ── GRADIENT ORBS ── */
+.orb {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 0;
+  filter: blur(100px); opacity: 0.18;
+}
+.orb1 { width: 500px; height: 500px; background: #c9a84c; top: -80px; right: -80px; }
+.orb2 { width: 400px; height: 400px; background: #2a2018; top: 40%; left: -100px; opacity: 0.6; filter: blur(120px); }
+.orb3 { width: 600px; height: 300px; background: #c9a84c; bottom: 0; right: 10%; opacity: 0.08; filter: blur(140px); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 5rem;
+  background: rgba(10,10,11,0.8);
+  backdrop-filter: blur(28px);
+  border-bottom: 1px solid var(--border3);
+}
+.nav-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+.nav-wordmark span { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 3rem; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--text2);
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold2); }
+.nav-avail {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+}
+.nav-avail::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+/* ── MAIN ── */
+main { position: relative; z-index: 1; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 5rem;
+  gap: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {}
+.hero-index {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--text3);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-index::before {
+  content: '';
+  display: block; width: 28px; height: 1px;
+  background: var(--gold);
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 7vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.75rem;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+  font-weight: 400;
+  font-size: 0.6em;
+  letter-spacing: 0.02em;
+}
+.hero-tagline {
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+.hero-roles {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.role-chip {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--gold);
+  background: var(--gold-muted);
+}
+.hero-cta { display: flex; gap: 1rem; }
+
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--gold);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  text-decoration: none;
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* ── HERO RIGHT — cinematic card ── */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-end;
+}
+.hero-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+.stat-card {
+  background: var(--ink3);
+  border: 1px solid var(--border3);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.stat-label {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.hero-quote-card {
+  width: 100%;
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2rem 2.25rem;
+  position: relative;
+}
+.hero-quote-card blockquote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.7;
+}
+.hero-quote-attr {
+  margin-top: 1rem;
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+}
+
+/* ── SECTIONS ── */
+section { padding: 7rem 5rem; position: relative; }
+.s-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border2) 30%, var(--border2) 70%, transparent 100%);
+  margin: 0 5rem;
+}
+.s-alt { background: var(--ink2); }
+
+.s-label {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.s-label::after {
+  content: ''; flex: 0 0 24px; height: 1px;
+  background: var(--gold); opacity: 0.4;
+}
+.s-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 3.5rem;
+}
+.s-heading em { font-style: italic; color: var(--gold); }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: start; }
+.about-text { font-size: 1rem; color: var(--text2); line-height: 1.9; font-weight: 300; }
+.about-text p + p { margin-top: 1rem; }
+.about-text strong { color: var(--text); font-weight: 400; }
+
+.about-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+.sidebar-card {
+  background: var(--ink3);
+  border: 1px solid var(--border3);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  transition: border-color 0.25s;
+}
+.sidebar-card:hover { border-color: var(--border); }
+.sc-label {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+.sc-body { font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+
+.araneri-block {
+  margin-top: 0;
+  padding: 2rem 2.25rem;
+  background: var(--ink4);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  border-left: 3px solid var(--gold);
+}
+.araneri-block p { font-size: 0.95rem; color: var(--text2); line-height: 1.8; font-style: italic; }
+
+/* ── SKILLS ── */
+.skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.skill-col-title {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text3);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border3);
+}
+.skill-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.skill-item {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.95rem; color: var(--text2);
+}
+.skill-item::before {
+  content: '';
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.tools-row {
+  margin-top: 4rem;
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  padding: 1.75rem 2.5rem;
+  background: var(--ink3);
+  border: 1px solid var(--border3);
+  border-radius: 6px;
+}
+.tools-label {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.tool-tag {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text2);
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--border3);
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tool-tag:hover { border-color: var(--border); color: var(--gold); }
+
+/* ── PROJECTS ── */
+.projects-stack { display: flex; flex-direction: column; gap: 2rem; }
+.project-card {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  border: 1px solid var(--border3);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ink2);
+  transition: border-color 0.25s, transform 0.2s;
+}
+.project-card:hover { border-color: var(--border); transform: translateX(4px); }
+
+.project-visual {
+  background: var(--ink3);
+  min-height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+  padding: 2rem;
+  border-right: 1px solid var(--border3);
+  position: relative;
+  overflow: hidden;
+}
+.pv-bg {
+  position: absolute; inset: 0;
+}
+.pv1 { background: radial-gradient(ellipse at 30% 70%, rgba(201,168,76,0.08), transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.04), transparent 60%); }
+.pv2 { background: radial-gradient(ellipse at 60% 60%, rgba(201,168,76,0.06), transparent 70%); }
+
+.project-icon {
+  position: relative; z-index: 1;
+  width: 60px; height: 60px;
+  background: var(--ink4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.project-icon svg { width: 28px; height: 28px; stroke: var(--gold); }
+.project-visual-label {
+  position: relative; z-index: 1;
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* placeholder img slot */
+.project-img-placeholder {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+}
+.project-img-placeholder img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.project-info {
+  padding: 2.5rem 3rem;
+  display: flex; flex-direction: column;
+}
+.project-meta {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.project-num {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.14em;
+}
+.project-role-badge {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  background: var(--gold-muted);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+}
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+.project-desc {
+  font-size: 0.93rem;
+  color: var(--text2);
+  line-height: 1.8;
+  flex: 1;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tech-tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  border: 1px solid rgba(201,168,76,0.2);
+  letter-spacing: 0.04em;
+}
+
+/* ── MOZHI PALAM ── */
+.mozhi-card {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3rem;
+  display: flex; gap: 3rem; align-items: center;
+}
+.mozhi-logo-slot {
+  flex-shrink: 0;
+  width: 120px; height: 120px;
+  border-radius: 8px;
+  background: var(--ink4);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 0.5rem;
+  color: var(--text3);
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.mozhi-logo-slot svg { width: 28px; height: 28px; stroke: var(--gold); opacity: 0.5; }
+.mozhi-body {}
+.mozhi-label {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+.mozhi-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+.mozhi-desc { font-size: 0.93rem; color: var(--text2); line-height: 1.8; }
+
+/* ── CONTACT ── */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contact-left p { font-size: 1rem; color: var(--text2); line-height: 1.8; margin-bottom: 2.5rem; max-width: 420px; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1.25rem;
+  padding: 1.1rem 1.75rem;
+  border: 1px solid var(--border3);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--text2);
+  background: var(--ink2);
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+}
+.contact-link:hover {
+  border-color: var(--border);
+  color: var(--gold);
+  background: var(--gold-muted);
+  transform: translateX(4px);
+}
+.contact-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.cl-info {}
+.cl-name { font-size: 0.9rem; font-weight: 400; color: inherit; }
+.cl-handle {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.06em;
+  margin-top: 0.1rem;
+}
+.cl-arrow {
+  margin-left: auto;
+  font-size: 1rem;
+  color: var(--text3);
+  transition: transform 0.2s, color 0.2s;
+}
+.contact-link:hover .cl-arrow { transform: translateX(4px); color: var(--gold); }
+
+.contact-right {}
+.identity-card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.5rem;
+  text-align: center;
+}
+.identity-initials {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-style: italic;
+  color: var(--gold);
+}
+.identity-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.identity-role {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.identity-motto {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text2);
+  line-height: 1.6;
+  padding: 1.25rem;
+  border: 1px solid var(--border3);
+  border-radius: 4px;
+  background: var(--ink3);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem 5rem;
+  border-top: 1px solid var(--border3);
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 1;
+}
+.footer-left {
+  font-family: 'Martian Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.footer-right {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text3);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fade-in { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+.fi { animation: fade-in 0.75s ease both; }
+.d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
+.d3 { animation-delay: 0.35s; } .d4 { animation-delay: 0.5s; }
+.d5 { animation-delay: 0.65s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links, .nav-avail { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; gap: 2.5rem; }
+  .hero-right { align-items: stretch; }
+  .about-grid, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .project-card { grid-template-columns: 1fr; }
+  .project-visual { min-height: 180px; }
+  .mozhi-card { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .s-divider { margin: 0 1.5rem; }
+  footer { flex-direction: column; gap: 0.75rem; padding: 2rem 1.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1" aria-hidden="true"></div>
+<div class="orb orb2" aria-hidden="true"></div>
+<div class="orb orb3" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wordmark">Praveena<span>.</span></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-avail">Available</div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div class="hero-left">
+    <div class="hero-index fi">Developer &nbsp;·&nbsp; Designer &nbsp;·&nbsp; Creative Technologist</div>
+
+    <h1 class="hero-name fi d1">
+      Praveena
+      <em>Bala</em>
+    </h1>
+
+    <p class="hero-tagline fi d2">
+      Creating meaningful digital experiences through design, storytelling, and technology.
+    </p>
+
+    <div class="hero-roles fi d3">
+      <span class="role-chip">UI/UX</span>
+      <span class="role-chip">Full Stack</span>
+      <span class="role-chip">Creative Direction</span>
+    </div>
+
+    <div class="hero-cta fi d4">
+      <a href="#projects" class="btn-gold">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        View Projects
+      </a>
+      <a href="#contact" class="btn-outline">Contact</a>
+    </div>
+  </div>
+
+  <div class="hero-right fi d3">
+    <div class="hero-stat-row">
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Key Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">Disciplines</div>
+      </div>
+      <div class="stat-card" style="grid-column:span 2;">
+        <div class="stat-num" style="font-size:1.8rem;">5+</div>
+        <div class="stat-label">Tools Mastered</div>
+      </div>
+    </div>
+    <div class="hero-quote-card">
+      <blockquote>"Creativity becomes meaningful when it inspires connection."</blockquote>
+      <div class="hero-quote-attr">— Praveena Bala</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="s-label">01 / About</div>
+  <h2 class="s-heading">Design. Build.<br/><em>Make it matter.</em></h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm passionate about building <strong>creative and impactful digital experiences</strong> that combine functionality with aesthetics. My interests span across design, development, branding, and visual storytelling — and I enjoy working on projects that allow creativity and innovation to come together.</p>
+      <p>I especially enjoy creating clean, engaging, and <strong>user-focused work</strong> that communicates ideas clearly while maintaining a strong visual identity. My approach is detail-oriented, modern, and adaptable depending on the project's goals and audience.</p>
+      <div class="araneri-block" style="margin-top:2rem;">
+        <p>"Being a part of Araneri allows me to collaborate with creative minds while contributing to projects that focus on meaningful storytelling and community impact. What I enjoy most is the freedom to experiment creatively while maintaining purpose and authenticity in every project."</p>
+      </div>
+    </div>
+
+    <div class="about-sidebar">
+      <div class="sidebar-card">
+        <div class="sc-label">Approach</div>
+        <div class="sc-body">Detail-oriented, modern, and adaptable. Every project gets the right balance of creativity and precision for its specific goals and audience.</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sc-label">Interests</div>
+        <div class="sc-body">UI/UX Design &nbsp;·&nbsp; Frontend Dev &nbsp;·&nbsp; Branding &nbsp;·&nbsp; Visual Storytelling &nbsp;·&nbsp; Algorithm Design</div>
+      </div>
+      <div class="sidebar-card">
+        <div class="sc-label">Currently</div>
+        <div class="sc-body">Developer &amp; Designer at Araneri. Building at the intersection of clean aesthetics and technical problem-solving.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="s-alt">
+  <div class="s-label">02 / Skills</div>
+  <h2 class="s-heading">Technical &amp; <em>Creative Toolkit</em></h2>
+
+  <div class="skills-layout">
+    <div>
+      <div class="skill-col-title">Technical Skills</div>
+      <div class="skill-list">
+        <div class="skill-item">UI/UX Design</div>
+        <div class="skill-item">Frontend Development</div>
+        <div class="skill-item">Full Stack Development</div>
+        <div class="skill-item">Object Oriented Programming</div>
+        <div class="skill-item">Data Structures &amp; Algorithms</div>
+        <div class="skill-item">Database Management Systems</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-col-title">Non-Technical Skills</div>
+      <div class="skill-list">
+        <div class="skill-item">Creative Direction</div>
+        <div class="skill-item">Content Design</div>
+        <div class="skill-item">Problem Solving</div>
+        <div class="skill-item">Team Collaboration</div>
+        <div class="skill-item">Communication</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-row">
+    <span class="tools-label">Tools</span>
+    <span class="tool-tag">Figma</span>
+    <span class="tool-tag">VS Code</span>
+    <span class="tool-tag">Canva</span>
+    <span class="tool-tag">CapCut</span>
+    <span class="tool-tag">GitHub</span>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label">03 / Projects</div>
+  <h2 class="s-heading">Selected <em>Works</em></h2>
+
+  <div class="projects-stack">
+
+    <!-- Project 1 — Araneri Creative Campaigns -->
+    <div class="project-card">
+      <div class="project-visual">
+        <div class="pv-bg pv1"></div>
+        <!--
+          TO ADD SCREENSHOT: uncomment below and add image path
+          <div class="project-img-placeholder">
+            <img src="araneri-campaign.jpg" alt="Araneri Creative Campaigns"/>
+          </div>
+        -->
+        <div class="project-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="project-visual-label">Design &amp; Campaigns</div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-num">01</span>
+          <span class="project-role-badge">Design &amp; Content</span>
+        </div>
+        <h3 class="project-title">Araneri Creative Campaigns</h3>
+        <p class="project-desc">Contributed to visual concepts, digital assets, and creative content used for campaigns and community engagement activities. Focused on cohesive brand storytelling across all deliverables — ensuring every asset felt intentional and on-message while maintaining Araneri's distinctive aesthetic voice.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Figma</span>
+          <span class="tech-tag">Canva</span>
+          <span class="tech-tag">Creative Direction</span>
+          <span class="tech-tag">Content Design</span>
+          <span class="tech-tag">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 — Airline Route Optimizer -->
+    <div class="project-card">
+      <div class="project-visual">
+        <div class="pv-bg pv2"></div>
+        <!--
+          TO ADD SCREENSHOT: uncomment below and add image path
+          <div class="project-img-placeholder">
+            <img src="airline-optimizer.jpg" alt="Airline Route Optimizer"/>
+          </div>
+        -->
+        <div class="project-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+        </div>
+        <div class="project-visual-label">Algorithm &amp; Dev</div>
+      </div>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-num">02</span>
+          <span class="project-role-badge">Developer &amp; Algorithm Designer</span>
+        </div>
+        <h3 class="project-title">Airline Route Optimizer</h3>
+        <p class="project-desc">Designed and implemented a graph-based airline route optimization system that helps users identify the cheapest, fastest, least-stop, and balanced travel routes. Integrated DFS, BFS, and Dijkstra's Algorithm for route exploration and optimization, alongside a route comparison dashboard for enhanced decision-making and user experience.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Graph Algorithms</span>
+          <span class="tech-tag">DFS / BFS</span>
+          <span class="tech-tag">Dijkstra's</span>
+          <span class="tech-tag">DSA</span>
+          <span class="tech-tag">Dashboard UI</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Mozhi Palam -->
+  <div style="margin-top:2.5rem;">
+    <div class="mozhi-card">
+      <div class="mozhi-logo-slot">
+        <!--
+          TO ADD LOGO: replace below with:
+          <img src="mozhi-palam-logo.png" alt="Mozhi Palam Logo" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">
+        -->
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Mozhi Palam<br/>Logo</span>
+      </div>
+      <div class="mozhi-body">
+        <div class="mozhi-label">Identity Design</div>
+        <h3 class="mozhi-title">Mozhi Palam</h3>
+        <p class="mozhi-desc">Brand identity and visual design contributions to Mozhi Palam — bringing together language, community, and creative design into a cohesive visual system.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="s-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="s-alt">
+  <div class="s-label">04 / Contact</div>
+  <h2 class="s-heading">Let's create<br/><em>something meaningful.</em></h2>
+
+  <div class="contact-layout">
+    <div class="contact-left">
+      <p>Open to creative collaborations, interesting design challenges, and conversations about where technology and storytelling meet.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/praveenabala/" class="contact-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <div class="cl-info">
+            <div class="cl-name">LinkedIn</div>
+            <div class="cl-handle">praveenabala</div>
+          </div>
+          <span class="cl-arrow">→</span>
+        </a>
+        <a href="https://github.com/Praveena-2907/" class="contact-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div class="cl-info">
+            <div class="cl-name">GitHub</div>
+            <div class="cl-handle">Praveena-2907</div>
+          </div>
+          <span class="cl-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <div class="identity-card">
+        <!-- Replace "P" with <img> when profile photo is available -->
+        <div class="identity-initials">P</div>
+        <div class="identity-name">Praveena Bala</div>
+        <div class="identity-role">Developer · Designer · Creative Technologist</div>
+        <div class="identity-motto">
+          "Creativity becomes meaningful when it inspires connection."
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-left">Praveena Bala &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Araneri</div>
+  <div class="footer-right">Design with purpose.</div>
+</footer>
+
+</body>
+</html>

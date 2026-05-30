@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kannan A — Writer · Designer · Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #080E09;
+  --bg2:        #0D1510;
+  --bg3:        #111A12;
+  --surface:    #162019;
+  --card:       #1A2A1C;
+  --green:      #3D8B54;
+  --green-mid:  #2E6B40;
+  --green-pale: #6DB882;
+  --green-mist: #A8D4B4;
+  --green-glow: rgba(61,139,84,0.15);
+  --green-dim:  rgba(61,139,84,0.08);
+  --moss:       #1F3D24;
+  --sage:       #8FAF94;
+  --cream:      #E8F0E9;
+  --muted:      #4A6650;
+  --border:     rgba(61,139,84,0.18);
+  --border-mid: rgba(61,139,84,0.32);
+  --text-dim:   #6B8A70;
+  --mono:       'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.75;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green-mid); border-radius: 2px; }
+
+/* GRAIN OVERLAY */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* AMBIENT GLOW */
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+}
+.glow-1 { width: 600px; height: 600px; background: var(--green); top: -200px; right: -100px; }
+.glow-2 { width: 400px; height: 400px; background: #1D5E30; bottom: 30%; left: -150px; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5vw;
+  background: rgba(8,14,9,0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--green-pale);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--green-pale); }
+
+/* STATUS PILL */
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--green-mist);
+  background: var(--green-dim);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+}
+
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green-pale);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 5vw 4rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow-line {
+  width: 2rem;
+  height: 1px;
+  background: var(--green);
+}
+
+.eyebrow-text {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green-pale);
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.h1-accent {
+  color: var(--green-pale);
+  font-style: italic;
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+}
+
+.hero-roles {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.role-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green-mist);
+  background: var(--green-dim);
+  border: 1px solid var(--border-mid);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+}
+
+.hero-desc {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.1rem;
+  color: var(--sage);
+  max-width: 480px;
+  margin-bottom: 2rem;
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--green);
+  border: none;
+  padding: 0.75rem 1.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s, transform 0.2s;
+  border-radius: 4px;
+}
+.btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); }
+
+.btn-outline {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-pale);
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  padding: 0.75rem 1.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.3s, background 0.3s;
+  border-radius: 4px;
+}
+.btn-outline:hover { background: var(--green-dim); border-color: var(--green-pale); }
+
+/* HERO RIGHT - CARD */
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.photo-box {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-box img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-icon {
+  font-size: 2rem;
+  color: var(--green-mid);
+  opacity: 0.6;
+}
+
+.photo-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.card-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.card-handle {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--green-pale);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.cstat { text-align: center; }
+
+.cstat-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--green-pale);
+  display: block;
+  line-height: 1;
+}
+
+.cstat-lbl {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* SECTIONS */
+section { padding: 6rem 5vw; position: relative; z-index: 1; }
+
+.section-wrap { max-width: 1280px; margin: 0 auto; }
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.sec-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--green-mid);
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+h2 span { color: var(--green-pale); }
+
+.sec-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ABOUT */
+#about { background: var(--bg2); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.about-text p {
+  color: var(--sage);
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+.about-text p strong {
+  color: var(--green-mist);
+  font-style: italic;
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.highlight-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  border-left: 3px solid var(--green);
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.highlight-item:hover {
+  background: var(--card);
+  border-color: var(--border-mid);
+}
+
+.hi-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.hi-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.hi-body {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ARANERI */
+#araneri { background: var(--bg); }
+
+.araneri-block {
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+}
+
+.araneri-block::after {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: var(--green-glow);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.araneri-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-pale);
+  background: var(--green-dim);
+  border: 1px solid var(--border-mid);
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  margin-bottom: 1.2rem;
+}
+
+.araneri-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.araneri-body { color: var(--sage); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+.kuralneri-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-mist);
+  background: var(--moss);
+  border: 1px solid var(--green-mid);
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+}
+
+.kuralneri-dot { width: 8px; height: 8px; background: var(--green-pale); border-radius: 50%; }
+
+/* SKILLS */
+#skills { background: var(--bg2); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.skill-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-tile::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green-mid), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.skill-tile:hover {
+  border-color: var(--border-mid);
+  transform: translateY(-4px);
+}
+
+.skill-tile:hover::before { transform: scaleX(1); }
+
+.skill-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+
+.skill-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 0.4rem;
+}
+
+.skill-desc {
+  font-size: 0.83rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* TOOLS */
+#tools { background: var(--bg); }
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+}
+
+.tool-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--sage);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.tool-chip:hover {
+  background: var(--card);
+  border-color: var(--green-mid);
+  color: var(--green-mist);
+}
+
+.tool-chip-dot {
+  width: 5px; height: 5px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* PROJECTS */
+#projects { background: var(--bg2); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  border-color: var(--border-mid);
+  transform: translateY(-4px);
+}
+
+.project-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(13,21,16,0.6), transparent);
+}
+
+.project-category {
+  position: absolute;
+  top: 0.8rem; left: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-mist);
+  background: rgba(8,14,9,0.75);
+  border: 1px solid var(--border-mid);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.project-body { padding: 1.4rem; flex: 1; }
+
+.project-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+}
+
+.project-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* HOBBIES */
+#hobbies { background: var(--bg); }
+
+.hobbies-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hobby-card {
+  flex: 1;
+  min-width: 200px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.hobby-card:hover {
+  border-color: var(--green-mid);
+  transform: translateY(-3px);
+}
+
+.hobby-icon { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+
+.hobby-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--cream);
+}
+
+/* QUOTE */
+#quote {
+  background: var(--bg2);
+  text-align: center;
+}
+
+.quote-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.quote-mark {
+  font-family: 'DM Serif Display', serif;
+  font-size: 5rem;
+  color: var(--green-mid);
+  opacity: 0.4;
+  line-height: 0.5;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.quote-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.quote-text span { color: var(--green-pale); }
+
+.quote-attr {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* CONTACT */
+#contact { background: var(--bg); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-text p {
+  color: var(--sage);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.3s, background 0.3s;
+  margin-bottom: 0.8rem;
+}
+
+.social-card:hover {
+  background: var(--card);
+  border-color: var(--green-mid);
+}
+
+.social-icon-box {
+  width: 38px; height: 38px;
+  background: var(--moss);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.social-info-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--cream);
+}
+
+.social-info-handle {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--green-pale);
+  letter-spacing: 0.05em;
+}
+
+.newsletter-card {
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green-mid), var(--green-pale), var(--green-mid));
+}
+
+.nl-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green-pale);
+  margin-bottom: 0.8rem;
+}
+
+.nl-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.nl-body {
+  font-size: 0.88rem;
+  color: var(--sage);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.nl-link {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-pale);
+  text-decoration: none;
+  border: 1px solid var(--border-mid);
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+  display: inline-block;
+}
+
+.nl-link:hover {
+  background: var(--green);
+  color: var(--bg);
+  border-color: var(--green);
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+.footer-txt {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-motto {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--green-mid);
+}
+
+/* REVEAL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.in { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  nav .nav-links, nav .status-pill { display: none; }
+  h1 { font-size: 2.8rem; }
+}
+
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Kannan A</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#araneri">Araneri</a></li>
+    <li><a href="#projects">Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="status-pill">
+    <span class="status-dot"></span>
+    Open to work
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Portfolio — 2025</span>
+      </div>
+      <h1>Kannan<br><span class="h1-accent">A</span></h1>
+      <div class="hero-roles">
+        <span class="role-tag">Writer</span>
+        <span class="role-tag">Designer</span>
+        <span class="role-tag">Editor</span>
+        <span class="role-tag">Tamil Literature</span>
+      </div>
+      <p class="hero-desc">Writing Tamil stories for newsletters while designing creative logos and visual templates.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Works</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="photo-box">
+        <div class="photo-icon">◉</div>
+        <div class="photo-label">Profile Photo</div>
+      </div>
+      <div class="card-name">Kannan A</div>
+      <div class="card-handle">@kannan · Writer · Designer · Editor</div>
+      <div class="card-stats">
+        <div class="cstat">
+          <span class="cstat-num">5</span>
+          <span class="cstat-lbl">Projects</span>
+        </div>
+        <div class="cstat">
+          <span class="cstat-num">3+</span>
+          <span class="cstat-lbl">Roles</span>
+        </div>
+        <div class="cstat">
+          <span class="cstat-num">10+</span>
+          <span class="cstat-lbl">Tools</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">01</span>
+      <h2>About <span>Me</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am <strong>fundamentally a writer</strong> — someone who finds meaning in crafting Tamil stories that speak to real lives, real struggles, and real growth. Words, for me, are not just tools; they are conversations waiting to happen.</p>
+        <p>My interests span <strong>Tamil literature, entrepreneurship, and business thinking</strong> — a mix that pushes me to write with both heart and strategy. I am always learning, always looking for the next idea that can change how I see the world.</p>
+        <p>Beyond writing, I bring the same curiosity to <strong>designing, editing, and teaching</strong>. I believe knowledge shared simply is the most powerful kind of knowledge.</p>
+        <p style="font-style: italic; color: var(--green-mist);">My personality: straightforward, polite, and honest — with kindness at the core.</p>
+      </div>
+      <div class="about-highlights reveal">
+        <div class="highlight-item">
+          <span class="hi-icon">✍️</span>
+          <div>
+            <div class="hi-title">Tamil Story Writing</div>
+            <div class="hi-body">Crafting meaningful Tamil stories for newsletters that connect with readers on a deeper level.</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="hi-icon">🎨</span>
+          <div>
+            <div class="hi-title">Creative Design</div>
+            <div class="hi-body">Designing logos, visual templates, and creative assets that communicate ideas with clarity.</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="hi-icon">🏫</span>
+          <div>
+            <div class="hi-title">Teaching</div>
+            <div class="hi-body">Sharing knowledge in a simple, practical way — because the best lessons are the ones people can use.</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="hi-icon">💡</span>
+          <div>
+            <div class="hi-title">Entrepreneurship & Growth</div>
+            <div class="hi-body">Deeply interested in business ideas and personal development — always exploring what's next.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARANERI -->
+<section id="araneri">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">02</span>
+      <h2>With <span>Araneri</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="araneri-block reveal">
+      <div class="araneri-badge">
+        <span class="kuralneri-dot"></span>
+        Startup Environment
+      </div>
+      <div class="araneri-title">A platform for creativity,<br/>writing & new opportunities.</div>
+      <p class="araneri-body">Working with Araneri excites me because it is a growing startup that creates real space for creativity, writing, designing, and entrepreneurial exploration. It is not just an organisation — it is a living experiment in what a passionate team can build together.</p>
+      <p class="araneri-body">My favourite initiative:</p>
+      <div class="kuralneri-pill">
+        <span class="kuralneri-dot"></span>
+        KuralNeri — bridging the gap between textbook knowledge and real-world understanding for students.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">03</span>
+      <h2>Core <span>Skills</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-tile reveal">
+        <div class="skill-icon">📝</div>
+        <div class="skill-name">Story Writing</div>
+        <div class="skill-desc">Tamil narrative writing for newsletters, blogs, and publications — storytelling rooted in culture and purpose.</div>
+      </div>
+      <div class="skill-tile reveal">
+        <div class="skill-icon">🎓</div>
+        <div class="skill-name">Teaching</div>
+        <div class="skill-desc">Breaking complex ideas into simple, practical lessons that stick — a skill built on patience and clarity.</div>
+      </div>
+      <div class="skill-tile reveal">
+        <div class="skill-icon">🖌️</div>
+        <div class="skill-name">Visual Design</div>
+        <div class="skill-desc">Logo creation, visual templates, and creative layouts using Canva and other design tools.</div>
+      </div>
+      <div class="skill-tile reveal">
+        <div class="skill-icon">✂️</div>
+        <div class="skill-name">Editing</div>
+        <div class="skill-desc">Refining content — text and video — to ensure it communicates with clarity and impact.</div>
+      </div>
+      <div class="skill-tile reveal">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">Circuit Design</div>
+        <div class="skill-desc">RF circuits, digital logic design, simulation and hardware fabrication using professional EDA tools.</div>
+      </div>
+      <div class="skill-tile reveal">
+        <div class="skill-icon">📡</div>
+        <div class="skill-name">RF & Antenna Engineering</div>
+        <div class="skill-desc">Antenna design, full-wave simulation, and parameter optimisation using CST Microwave Studio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">04</span>
+      <h2>Tools & <span>Software</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Canva</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Beehiiv</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>MATLAB</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Cadence</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Clipchamp</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>E-Sim</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>Proteus</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>LT Spice</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>CST Microwave Studio</div>
+      <div class="tool-chip"><span class="tool-chip-dot"></span>MikroC PRO</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">05</span>
+      <h2>Selected <span>Works</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-img">
+          〰️
+          <div class="project-img-overlay"></div>
+          <div class="project-category">Signal Processing</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Digital Function Generator</div>
+          <div class="project-desc">Designed a digital function generator capable of producing sine, square, and triangle waveforms for testing and troubleshooting electronic circuits.</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">
+          📡
+          <div class="project-img-overlay"></div>
+          <div class="project-category">RF Engineering</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">RF Detector</div>
+          <div class="project-desc">Built an RF detector using operational amplifiers to identify electromagnetic field sources such as mobile phones and other RF-emitting devices.</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">
+          🌀
+          <div class="project-img-overlay"></div>
+          <div class="project-category">Antenna Design</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Spiral Antenna</div>
+          <div class="project-desc">Designed a spiral antenna using CST Microwave Studio — full-wave simulations, parameter optimisation, and fabrication layout preparation.</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">
+          📻
+          <div class="project-img-overlay"></div>
+          <div class="project-category">RF / Prototype</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">FM Radio</div>
+          <div class="project-desc">Developed a functional FM radio prototype using basic RF components, focusing on tuning, circuit design, and signal reception.</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img">
+          🔲
+          <div class="project-img-overlay"></div>
+          <div class="project-category">Digital Logic</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Majority Gate Design</div>
+          <div class="project-desc">Designed and simulated a majority gate using Cadence software for digital circuit analysis and verification.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">06</span>
+      <h2>Beyond <span>Work</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="hobbies-row">
+      <div class="hobby-card reveal">
+        <span class="hobby-icon">📚</span>
+        <div class="hobby-name">Reading Books</div>
+      </div>
+      <div class="hobby-card reveal">
+        <span class="hobby-icon">🎬</span>
+        <div class="hobby-name">Watching Movies</div>
+      </div>
+      <div class="hobby-card reveal">
+        <span class="hobby-icon">🪡</span>
+        <div class="hobby-name">Hand Craft Work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <div class="section-wrap">
+    <div class="quote-inner reveal">
+      <span class="quote-mark">"</span>
+      <div class="quote-text">Learn from <span>all.</span></div>
+      <div class="quote-attr">— Kannan A · Personal Motto</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="sec-num">07</span>
+      <h2>Get in <span>Touch</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-text reveal">
+        <p>Open to writing collaborations, design projects, newsletter contributions, and conversations about Tamil literature or entrepreneurship.</p>
+        <a class="social-card" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">
+          <div class="social-icon-box">in</div>
+          <div>
+            <div class="social-info-name">LinkedIn</div>
+            <div class="social-info-handle">Kannan A</div>
+          </div>
+        </a>
+        <a class="social-card" href="https://arannerii.beehiiv.com/" target="_blank" rel="noopener">
+          <div class="social-icon-box">📰</div>
+          <div>
+            <div class="social-info-name">Araneri Newsletter</div>
+            <div class="social-info-handle">arannerii.beehiiv.com</div>
+          </div>
+        </a>
+      </div>
+      <div class="newsletter-card reveal">
+        <div class="nl-label">Latest Work</div>
+        <div class="nl-title">Araneri Newsletter</div>
+        <p class="nl-body">Read Tamil stories, insights on entrepreneurship, and meaningful perspectives on society and growth — published through the Araneri newsletter on Beehiiv.</p>
+        <a class="nl-link" href="https://arannerii.beehiiv.com/" target="_blank" rel="noopener">Read Newsletter →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-txt">© 2025 Kannan A</span>
+  <span class="footer-motto">"Learn from all."</span>
+  <span class="footer-txt">Writer · Designer · Editor</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const siblings = Array.from(e.target.parentElement?.children || []);
+      const delay = siblings.indexOf(e.target) * 90;
+      setTimeout(() => e.target.classList.add('in'), delay);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

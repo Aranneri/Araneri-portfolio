@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Guru Aishwarya R — Designer · Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Canela:ital,wght@0,300;0,400;1,300;1,400&family=Gowun+Batang:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --midnight: #070B1A;
+  --black: #050505;
+  --deep: #0C1229;
+  --layer: #0F1530;
+  --layer2: #131840;
+  --pink: #F3B6D6;
+  --pink2: #e89cc4;
+  --pink3: #d478a8;
+  --pink-glow: rgba(243,182,214,0.12);
+  --pink-glow2: rgba(243,182,214,0.06);
+  --indigo: #4F46E5;
+  --indigo2: #6366f1;
+  --purple: #7C3AED;
+  --glass: rgba(255,255,255,0.05);
+  --glass2: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.12);
+  --glass-border2: rgba(243,182,214,0.2);
+  --text: #f0edf8;
+  --text2: #a09bbf;
+  --text3: #5a5575;
+  --tag-bg: rgba(243,182,214,0.1);
+  --tag-text: #F3B6D6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--midnight);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── AURORA BG ── */
+.aurora {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+.aurora-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(110px); pointer-events: none;
+}
+.ab1 { width:700px;height:500px;background:rgba(79,70,229,0.2);top:-100px;left:-150px; }
+.ab2 { width:500px;height:500px;background:rgba(243,182,214,0.1);top:20%;right:-100px; }
+.ab3 { width:600px;height:400px;background:rgba(124,58,237,0.15);bottom:0;left:20%;  }
+.ab4 { width:400px;height:400px;background:rgba(243,182,214,0.07);bottom:20%;right:10%; }
+
+/* ── STAR PARTICLES ── */
+#stars { position:fixed;inset:0;z-index:0;pointer-events:none; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding: 1.3rem 4.5rem;
+  background: rgba(7,11,26,0.7);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-logo {
+  font-family: 'Cormorant', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+.nav-logo span { color: var(--pink); font-style: italic; }
+.nav-links { display:flex;gap:2.5rem;list-style:none; }
+.nav-links a {
+  text-decoration:none;color:var(--text2);
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--pink); }
+
+/* ── MAIN ── */
+main { position:relative;z-index:1; }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding: 8rem 4.5rem 4rem;
+  gap: 4rem;
+  position:relative;
+}
+.hero-left { flex:1; }
+.hero-right { flex:0 0 340px; }
+
+.hero-badge {
+  display:inline-flex;align-items:center;gap:0.6rem;
+  padding:0.45rem 1.1rem;
+  background: var(--glass);
+  border:1px solid var(--glass-border2);
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;color:var(--pink);
+  letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:2.5rem;
+}
+.hero-badge::before {
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--pink);
+  box-shadow:0 0 8px var(--pink);
+  animation:blink 2.5s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero-name {
+  font-family:'Cormorant',serif;
+  font-size:clamp(3.5rem,8vw,7.5rem);
+  font-weight:300;
+  line-height:0.95;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+}
+.hero-name .first { display:block; color:var(--text); }
+.hero-name .last  { display:block; font-style:italic; color:var(--pink); }
+
+.hero-roles {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;color:var(--text3);
+  letter-spacing:0.15em;text-transform:uppercase;
+  margin:1.5rem 0 2rem;
+}
+.hero-intro {
+  max-width:480px;font-size:1rem;
+  color:var(--text2);line-height:1.85;
+  margin-bottom:2.75rem;
+}
+.hero-cta { display:flex;gap:1rem;flex-wrap:wrap; }
+
+.btn-glass {
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.9rem 2rem;
+  background:var(--glass2);
+  border:1px solid var(--glass-border2);
+  backdrop-filter:blur(16px);
+  color:var(--pink);
+  text-decoration:none;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  border-radius:6px;
+  transition:background 0.2s,transform 0.15s,border-color 0.2s;
+}
+.btn-glass:hover { background:rgba(243,182,214,0.15);border-color:var(--pink);transform:translateY(-2px); }
+.btn-ghost {
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.9rem 2rem;
+  border:1px solid var(--glass-border);
+  color:var(--text2);text-decoration:none;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  border-radius:6px;
+  transition:border-color 0.2s,color 0.2s,transform 0.15s;
+}
+.btn-ghost:hover { border-color:var(--pink2);color:var(--pink2);transform:translateY(-2px); }
+
+/* ── PROFILE CARD (hero right) ── */
+.profile-glass {
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  padding:2.5rem 2rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.profile-glass::before {
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(243,182,214,0.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.profile-photo {
+  width:130px;height:130px;border-radius:50%;
+  background:var(--layer2);
+  border:2px solid rgba(243,182,214,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;
+  font-family:'Cormorant',serif;font-size:2.5rem;font-style:italic;
+  color:var(--pink);overflow:hidden;position:relative;
+}
+.profile-photo img { width:100%;height:100%;object-fit:cover;border-radius:50%; }
+.profile-photo-label {
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;
+  display:block;margin-bottom:1.25rem;
+}
+.profile-name {
+  font-family:'Cormorant',serif;font-size:1.2rem;font-weight:400;
+  color:var(--text);margin-bottom:0.3rem;
+}
+.profile-tag {
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.profile-divider { height:1px;background:var(--glass-border);margin-bottom:1.5rem; }
+.profile-hobbies { display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center; }
+.hobby-pill {
+  background:var(--tag-bg);color:var(--tag-text);
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  padding:0.3rem 0.75rem;border-radius:20px;
+  border:1px solid rgba(243,182,214,0.2);letter-spacing:0.04em;
+}
+
+/* ── SECTIONS ── */
+section { padding:6rem 4.5rem;position:relative; }
+.s-glass { background:rgba(12,18,41,0.5);backdrop-filter:blur(8px); }
+
+.s-label {
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  color:var(--pink);letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:0.75rem;opacity:0.85;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.s-label::after { content:'';flex:0 0 20px;height:1px;background:var(--pink);opacity:0.35; }
+.s-heading {
+  font-family:'Cormorant',serif;
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  font-weight:300;line-height:1.05;letter-spacing:-0.02em;
+  margin-bottom:3.5rem;
+}
+.s-heading em { font-style:italic;color:var(--pink); }
+
+/* ── ABOUT ── */
+.about-grid { display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:start; }
+.about-text { font-size:0.98rem;color:var(--text2);line-height:1.9; }
+.about-text p+p { margin-top:1rem; }
+.about-text strong { color:var(--text);font-weight:400; }
+
+.about-cards { display:flex;flex-direction:column;gap:1.25rem; }
+.glass-card {
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:14px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:1.5rem 1.75rem;
+  position:relative;overflow:hidden;
+  transition:border-color 0.25s,transform 0.2s;
+}
+.glass-card:hover { border-color:var(--glass-border2);transform:translateY(-2px); }
+.glass-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(243,182,214,0.4),transparent);
+}
+.gc-label {
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  color:var(--pink);letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:0.6rem;opacity:0.8;
+}
+.gc-body { font-size:0.88rem;color:var(--text2);line-height:1.7; }
+
+.araneri-quote {
+  margin-top:2.5rem;
+  padding:2rem 2.25rem;
+  background:var(--glass);
+  border:1px solid var(--glass-border2);
+  border-radius:14px;
+  backdrop-filter:blur(20px);
+  border-left:3px solid var(--pink);
+  position:relative;
+}
+.araneri-quote p {
+  font-family:'Cormorant',serif;font-style:italic;
+  font-size:1.05rem;color:var(--text);line-height:1.75;
+}
+.araneri-attr {
+  margin-top:1rem;font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:var(--text3);letter-spacing:0.08em;
+}
+
+/* ── STRENGTHS ── */
+.strengths-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:3rem; }
+.strength-card {
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:12px;backdrop-filter:blur(16px);
+  padding:1.5rem;transition:border-color 0.25s,transform 0.2s;
+}
+.strength-card:hover { border-color:var(--glass-border2);transform:translateY(-3px); }
+.strength-icon {
+  width:36px;height:36px;border-radius:8px;
+  background:var(--pink-glow);border:1px solid rgba(243,182,214,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;
+}
+.strength-icon svg { width:18px;height:18px;stroke:var(--pink); }
+.strength-title { font-size:0.88rem;font-weight:400;color:var(--text);margin-bottom:0.3rem; }
+.strength-desc { font-size:0.78rem;color:var(--text3);line-height:1.5; }
+
+/* ── SKILLS ── */
+.skills-two { display:grid;grid-template-columns:1fr 1fr;gap:4rem; }
+.skill-group-title {
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  color:var(--text3);letter-spacing:0.16em;text-transform:uppercase;
+  margin-bottom:1.5rem;padding-bottom:0.75rem;
+  border-bottom:1px solid var(--glass-border);
+}
+.skill-pills { display:flex;flex-wrap:wrap;gap:0.6rem; }
+.skill-pill {
+  background:var(--tag-bg);color:var(--tag-text);
+  font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+  padding:0.4rem 0.9rem;border-radius:4px;
+  border:1px solid rgba(243,182,214,0.2);letter-spacing:0.04em;
+  transition:background 0.2s,border-color 0.2s;
+}
+.skill-pill:hover { background:rgba(243,182,214,0.18);border-color:var(--pink2); }
+
+.tools-glass {
+  margin-top:3.5rem;
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:14px;backdrop-filter:blur(20px);
+  padding:1.75rem 2.25rem;
+}
+.tools-label {
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  color:var(--text3);letter-spacing:0.16em;text-transform:uppercase;
+  margin-bottom:1.25rem;
+}
+.tools-flow { display:flex;flex-wrap:wrap;gap:0.75rem; }
+.tool-node {
+  background:rgba(255,255,255,0.04);color:var(--text2);
+  border:1px solid var(--glass-border);
+  font-family:'JetBrains Mono',monospace;font-size:0.68rem;
+  padding:0.4rem 0.9rem;border-radius:20px;letter-spacing:0.04em;
+  transition:border-color 0.2s,color 0.2s;
+}
+.tool-node:hover { border-color:var(--glass-border2);color:var(--pink); }
+
+/* ── PROJECTS ── */
+.projects-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
+.project-card {
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:16px;backdrop-filter:blur(20px);
+  overflow:hidden;transition:border-color 0.25s,transform 0.2s;
+  display:flex;flex-direction:column;
+}
+.project-card:hover { border-color:var(--glass-border2);transform:translateY(-4px); }
+.project-card.featured { grid-column:span 2; flex-direction:row; }
+
+.project-visual {
+  position:relative;overflow:hidden;
+  background:var(--layer);min-height:200px;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;
+}
+.project-card.featured .project-visual { flex:0 0 45%; min-height:280px; }
+
+.pv-aurora {
+  position:absolute;inset:0;pointer-events:none;
+}
+.pva1 { background:radial-gradient(ellipse at 30% 70%,rgba(243,182,214,0.1),transparent 60%),radial-gradient(ellipse at 70%30%,rgba(79,70,229,0.1),transparent 60%); }
+.pva2 { background:radial-gradient(ellipse at 50% 50%,rgba(243,182,214,0.08),transparent 70%); }
+.pva3 { background:radial-gradient(ellipse at 40% 60%,rgba(124,58,237,0.1),transparent 60%); }
+.pva4 { background:radial-gradient(ellipse at 60% 40%,rgba(243,182,214,0.1),transparent 60%); }
+
+.project-icon-wrap {
+  position:relative;z-index:1;
+  width:52px;height:52px;border-radius:12px;
+  background:rgba(243,182,214,0.08);border:1px solid rgba(243,182,214,0.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.project-icon-wrap svg { width:24px;height:24px;stroke:var(--pink); }
+.project-visual-label {
+  position:relative;z-index:1;
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;text-align:center;
+}
+
+/* image slot inside visual */
+.pv-img {
+  position:absolute;inset:0;z-index:2;
+}
+.pv-img img { width:100%;height:100%;object-fit:cover; }
+
+.project-body {
+  padding:1.75rem 2rem;flex:1;display:flex;flex-direction:column;
+}
+.project-meta { display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem; }
+.project-num {
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  color:var(--text3);letter-spacing:0.12em;
+}
+.project-badge {
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  color:var(--pink);background:var(--tag-bg);
+  border:1px solid rgba(243,182,214,0.2);
+  padding:0.2rem 0.6rem;border-radius:3px;letter-spacing:0.06em;text-transform:uppercase;
+}
+.project-title {
+  font-family:'Cormorant',serif;font-size:1.4rem;font-weight:400;
+  line-height:1.2;letter-spacing:-0.01em;color:var(--text);
+  margin-bottom:0.75rem;
+}
+.project-desc {
+  font-size:0.88rem;color:var(--text2);line-height:1.8;flex:1;margin-bottom:1.25rem;
+}
+.project-tags { display:flex;flex-wrap:wrap;gap:0.4rem; }
+.p-tag {
+  background:var(--tag-bg);color:var(--tag-text);
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  padding:0.25rem 0.6rem;border-radius:3px;
+  border:1px solid rgba(243,182,214,0.18);letter-spacing:0.04em;
+}
+
+/* ── HOBBIES ── */
+.hobbies-row { display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem; }
+.hobby-card {
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:14px;backdrop-filter:blur(16px);
+  padding:2rem 1.5rem;text-align:center;
+  transition:border-color 0.25s,transform 0.2s;
+}
+.hobby-card:hover { border-color:var(--glass-border2);transform:translateY(-4px); }
+.hobby-icon {
+  width:48px;height:48px;border-radius:12px;
+  background:var(--pink-glow);border:1px solid rgba(243,182,214,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;
+}
+.hobby-icon svg { width:22px;height:22px;stroke:var(--pink); }
+.hobby-name { font-size:0.9rem;font-weight:400;color:var(--text);margin-bottom:0.25rem; }
+.hobby-desc { font-size:0.78rem;color:var(--text3);line-height:1.5; }
+
+/* ── MOTTO ── */
+.motto-section {
+  padding:5rem 4.5rem;
+  text-align:center;position:relative;
+}
+.motto-glass {
+  max-width:760px;margin:0 auto;
+  background:var(--glass);border:1px solid var(--glass-border2);
+  border-radius:20px;backdrop-filter:blur(24px);
+  padding:3.5rem;position:relative;overflow:hidden;
+}
+.motto-glass::before {
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(243,182,214,0.06),transparent 60%);
+  pointer-events:none;
+}
+.motto-text {
+  font-family:'Cormorant',serif;font-style:italic;
+  font-size:clamp(1.3rem,3vw,2rem);font-weight:300;
+  line-height:1.5;color:var(--text);position:relative;z-index:1;
+}
+.motto-text em { color:var(--pink);font-style:normal; }
+.motto-attr {
+  margin-top:1.5rem;font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;color:var(--text3);letter-spacing:0.1em;
+  position:relative;z-index:1;
+}
+.motto-line {
+  width:40px;height:1px;
+  background:var(--pink);opacity:0.4;
+  margin:1.25rem auto;
+}
+
+/* ── CONTACT ── */
+.contact-layout { display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start; }
+.contact-intro { font-size:1rem;color:var(--text2);line-height:1.8;margin-bottom:2.5rem;max-width:420px; }
+.social-cards { display:flex;flex-direction:column;gap:1rem; }
+.social-card {
+  display:flex;align-items:center;gap:1.25rem;
+  padding:1.1rem 1.75rem;
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:12px;backdrop-filter:blur(16px);
+  text-decoration:none;color:var(--text2);
+  transition:border-color 0.2s,color 0.2s,background 0.2s,transform 0.15s;
+}
+.social-card:hover {
+  border-color:var(--glass-border2);color:var(--pink);
+  background:var(--pink-glow2);transform:translateX(4px);
+}
+.social-card svg { width:18px;height:18px;flex-shrink:0;stroke:currentColor; }
+.sc-info { flex:1; }
+.sc-name { font-size:0.9rem;font-weight:400;color:inherit; }
+.sc-handle { font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text3);margin-top:0.1rem; }
+.sc-arrow { color:var(--text3);transition:transform 0.2s,color 0.2s;font-size:1rem; }
+.social-card:hover .sc-arrow { transform:translateX(4px);color:var(--pink); }
+
+.id-glass {
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:20px;backdrop-filter:blur(24px);
+  padding:2.5rem;text-align:center;position:relative;overflow:hidden;
+}
+.id-glass::before {
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,rgba(243,182,214,0.07),transparent);pointer-events:none;
+}
+.id-avatar {
+  width:80px;height:80px;border-radius:50%;
+  background:var(--pink-glow);border:1px solid rgba(243,182,214,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;
+  font-family:'Cormorant',serif;font-size:2rem;font-style:italic;color:var(--pink);
+  overflow:hidden;
+}
+.id-avatar img { width:100%;height:100%;object-fit:cover;border-radius:50%; }
+.id-name { font-family:'Cormorant',serif;font-size:1.4rem;color:var(--text);margin-bottom:0.25rem; }
+.id-role {
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;
+}
+.id-motto {
+  font-family:'Cormorant',serif;font-style:italic;font-size:0.95rem;
+  color:var(--text2);line-height:1.6;
+  padding:1.25rem;border:1px solid var(--glass-border);border-radius:10px;
+  background:rgba(255,255,255,0.03);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding:2.5rem 4.5rem;border-top:1px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:1;
+}
+.footer-l {
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;
+}
+.footer-r {
+  font-family:'Cormorant',serif;font-style:italic;
+  font-size:0.95rem;color:var(--text3);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fade-up { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+.fu { animation:fade-up 0.8s ease both; }
+.d1{animation-delay:0.1s}.d2{animation-delay:0.25s}
+.d3{animation-delay:0.4s}.d4{animation-delay:0.55s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  section,.hero{padding:4rem 1.5rem;}
+  .hero{flex-direction:column;padding-top:7rem;gap:2.5rem;}
+  .hero-right{flex:none;width:100%;}
+  .about-grid,.skills-two,.contact-layout{grid-template-columns:1fr;gap:2rem;}
+  .projects-grid{grid-template-columns:1fr;}
+  .project-card.featured{grid-column:span 1;flex-direction:column;}
+  .project-card.featured .project-visual{flex:none;min-height:200px;}
+  .hobbies-row{grid-template-columns:1fr 1fr;}
+  .motto-section{padding:4rem 1.5rem;}
+  footer{flex-direction:column;gap:0.75rem;padding:2rem 1.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- AURORA -->
+<div class="aurora" aria-hidden="true">
+  <div class="aurora-blob ab1"></div>
+  <div class="aurora-blob ab2"></div>
+  <div class="aurora-blob ab3"></div>
+  <div class="aurora-blob ab4"></div>
+</div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Guru <span>Aishwarya</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-badge fu">Designer &amp; Developer</div>
+
+    <h1 class="hero-name fu d1">
+      <span class="first">Guru</span>
+      <span class="last">Aishwarya R</span>
+    </h1>
+
+    <div class="hero-roles fu d2">UI/UX &nbsp;·&nbsp; Frontend Dev &nbsp;·&nbsp; Visual Storytelling</div>
+
+    <p class="hero-intro fu d3">
+      Crafting immersive digital experiences where creativity meets purposeful design.
+    </p>
+
+    <div class="hero-cta fu d4">
+      <a href="#projects" class="btn-glass">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        View Projects
+      </a>
+      <a href="#contact" class="btn-ghost">Connect</a>
+    </div>
+  </div>
+
+  <div class="hero-right fu d3">
+    <div class="profile-glass">
+      <div class="profile-photo">
+        <!-- REPLACE CONTENT BELOW WITH:
+             <img src="guru-aishwarya-photo.jpg" alt="Guru Aishwarya R"/>
+             when profile photo is available -->
+        GA
+      </div>
+      <span class="profile-photo-label">← Add profile photo here</span>
+      <div class="profile-name">Guru Aishwarya R</div>
+      <div class="profile-tag">Designer · Developer · Creator</div>
+      <div class="profile-divider"></div>
+      <div class="profile-hobbies">
+        <span class="hobby-pill">Singing</span>
+        <span class="hobby-pill">Drawing</span>
+        <span class="hobby-pill">Design</span>
+        <span class="hobby-pill">Technology</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="s-glass">
+  <div class="s-label">01 / About</div>
+  <h2 class="s-heading">Design with heart,<br/><em>build with purpose.</em></h2>
+
+  <div class="about-grid">
+    <div>
+      <div class="about-text">
+        <p>I'm a passionate designer and developer with a strong interest in creating <strong>meaningful digital experiences</strong> and exploring new creative ideas. I enjoy UI/UX design, frontend development, branding, and visual storytelling, while also spending time on drawing, music, and creative experimentation.</p>
+        <p>I love transforming ideas into <strong>modern and polished designs</strong> that balance aesthetics, functionality, and user experience. Whether it's designing interfaces, creating visuals, or developing interactive websites, I enjoy work that blends creativity, innovation, and problem-solving.</p>
+      </div>
+      <div class="araneri-quote">
+        <p>"ARANERI gives me the freedom to work creatively at my own pace while encouraging collaboration and innovation. What I love most is how it brings together people with different talents, creating a space where learning, creativity, and meaningful contributions grow naturally."</p>
+        <div class="araneri-attr">— Guru Aishwarya R &nbsp;·&nbsp; Designer & Developer, Araneri</div>
+      </div>
+    </div>
+
+    <div class="about-cards">
+      <div class="glass-card">
+        <div class="gc-label">Focus Areas</div>
+        <div class="gc-body">UI/UX Design &nbsp;·&nbsp; Frontend Development &nbsp;·&nbsp; Branding &nbsp;·&nbsp; Visual Storytelling &nbsp;·&nbsp; Interactive Websites</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-label">Approach</div>
+        <div class="gc-body">Detail-oriented, modern, and creative. Every project gets a unique blend of aesthetics and functionality tailored to its goals and audience.</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-label">Beyond Code</div>
+        <div class="gc-body">Singing &nbsp;·&nbsp; Drawing &nbsp;·&nbsp; Creative experimentation &nbsp;·&nbsp; Exploring modern technologies</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creative Strengths -->
+  <div style="margin-top:4rem;">
+    <div class="s-label" style="margin-bottom:2rem;">Creative Strengths</div>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="strength-title">Attention to Visual Detail</div>
+        <div class="strength-desc">Every pixel, spacing, and color choice is intentional.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="strength-title">Strong Aesthetic Sense</div>
+        <div class="strength-desc">Instinctive feel for what looks and feels right.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="strength-title">Design Meets Function</div>
+        <div class="strength-desc">Blending beautiful design with technical precision.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="strength-title">Calm &amp; Adaptive</div>
+        <div class="strength-desc">Steady under pressure, flexible across project types.</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div class="strength-title">Creative Experimentation</div>
+        <div class="strength-desc">Passion for pushing boundaries and trying new ideas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label">02 / Skills</div>
+  <h2 class="s-heading">Technical &amp; <em>Creative Toolkit</em></h2>
+
+  <div class="skills-two">
+    <div>
+      <div class="skill-group-title">Technical Skills</div>
+      <div class="skill-pills">
+        <span class="skill-pill">UI/UX Design</span>
+        <span class="skill-pill">Frontend Development</span>
+        <span class="skill-pill">DBMS</span>
+        <span class="skill-pill">OOP</span>
+        <span class="skill-pill">Machine Learning</span>
+        <span class="skill-pill">Computer Networks</span>
+        <span class="skill-pill">Data Structures &amp; Algorithms</span>
+      </div>
+    </div>
+    <div>
+      <div class="skill-group-title">Creative &amp; Non-Technical</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Creative Designing</span>
+        <span class="skill-pill">Design Thinking</span>
+        <span class="skill-pill">Team Collaboration</span>
+        <span class="skill-pill">Content Visualization</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-glass">
+    <div class="tools-label">Tools &amp; Technologies</div>
+    <div class="tools-flow">
+      <span class="tool-node">VS Code</span>
+      <span class="tool-node">Figma</span>
+      <span class="tool-node">Canva</span>
+      <span class="tool-node">GitHub</span>
+      <span class="tool-node">React.js</span>
+      <span class="tool-node">Express.js</span>
+      <span class="tool-node">Node.js</span>
+      <span class="tool-node">MongoDB</span>
+      <span class="tool-node">MySQL</span>
+      <span class="tool-node">Sketchbook</span>
+      <span class="tool-node">Antigravity</span>
+      <span class="tool-node">Highlight</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="s-glass">
+  <div class="s-label">03 / Projects</div>
+  <h2 class="s-heading">Selected <em>Works</em></h2>
+
+  <div class="projects-grid">
+
+    <!-- Featured — Araneri Website UI -->
+    <div class="project-card featured">
+      <div class="project-visual">
+        <div class="pv-aurora pva1"></div>
+        <!-- ADD SCREENSHOT: <div class="pv-img"><img src="araneri-ui.jpg" alt="Araneri Website UI"/></div> -->
+        <div class="project-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="project-visual-label">UI Design</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-num">01</span>
+          <span class="project-badge">UI Design</span>
+        </div>
+        <h3 class="project-title">ARANERI — Website UI Design</h3>
+        <p class="project-desc">Designed the ARANERI website UI with modern aesthetics and interactive user experience. Focused on delivering a cohesive visual language across all pages — from navigation to landing sections — ensuring every element reflected the brand's identity with precision and polish.</p>
+        <div class="project-tags">
+          <span class="p-tag">Figma</span>
+          <span class="p-tag">UI/UX</span>
+          <span class="p-tag">Prototyping</span>
+          <span class="p-tag">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cross Tongue -->
+    <div class="project-card">
+      <div class="project-visual">
+        <div class="pv-aurora pva2"></div>
+        <!-- ADD GIF/SCREENSHOT: <div class="pv-img"><img src="cross-tongue-gif.gif" alt="Cross Tongue Tamil Letters"/></div> -->
+        <div class="project-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <div class="project-visual-label">GIF · Typography</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-num">02</span>
+          <span class="project-badge">Motion Design</span>
+        </div>
+        <h3 class="project-title">Cross Tongue — Tamil Letters GIF</h3>
+        <p class="project-desc">Designed animated Tamil letter GIFs blending typography, creativity, and visual storytelling. A tribute to language through motion.</p>
+        <div class="project-tags">
+          <span class="p-tag">Animation</span>
+          <span class="p-tag">Typography</span>
+          <span class="p-tag">Visual Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KuralNeri Poster -->
+    <div class="project-card">
+      <div class="project-visual">
+        <div class="pv-aurora pva3"></div>
+        <!-- ADD POSTER: <div class="pv-img"><img src="sketch-the-beat-poster.jpg" alt="Sketch The Beat Poster"/></div> -->
+        <div class="project-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div class="project-visual-label">Poster Design</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-num">03</span>
+          <span class="project-badge">Graphic Design</span>
+        </div>
+        <h3 class="project-title">KuralNeri — "Sketch The Beat" Poster</h3>
+        <p class="project-desc">Designed a creative poster for the "Sketch The Beat" initiative under KuralNeri — balancing artistic expression with clear visual communication.</p>
+        <div class="project-tags">
+          <span class="p-tag">Canva</span>
+          <span class="p-tag">Poster Design</span>
+          <span class="p-tag">Creative Direction</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pozhuthu Neri Logo -->
+    <div class="project-card" style="grid-column: span 2;">
+      <div class="project-visual" style="min-height:160px;">
+        <div class="pv-aurora pva4"></div>
+        <!-- ADD LOGO: <div class="pv-img"><img src="pozhuthu-neri-logo.png" alt="Pozhuthu Neri Logo"/></div> -->
+        <div class="project-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </div>
+        <div class="project-visual-label">Logo &amp; Identity</div>
+      </div>
+      <div class="project-body" style="padding:1.5rem 2rem;">
+        <div class="project-meta">
+          <span class="project-num">04</span>
+          <span class="project-badge">Brand Identity</span>
+        </div>
+        <h3 class="project-title">Pozhuthu Neri — Logo Design</h3>
+        <p class="project-desc">Designed a minimal yet impactful logo representing the identity of Pozhuthu Neri — capturing the essence of the brand in a single, memorable mark.</p>
+        <div class="project-tags">
+          <span class="p-tag">Logo Design</span>
+          <span class="p-tag">Brand Identity</span>
+          <span class="p-tag">Minimalism</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+  <div class="s-label">04 / Hobbies &amp; Interests</div>
+  <h2 class="s-heading">Beyond the <em>screen.</em></h2>
+  <div class="hobbies-row">
+    <div class="hobby-card">
+      <div class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </div>
+      <div class="hobby-name">Singing</div>
+      <div class="hobby-desc">Finding expression and emotion through music and voice.</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="hobby-name">Drawing</div>
+      <div class="hobby-desc">Turning imagination into visual form on Sketchbook and beyond.</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="hobby-name">Creative Design</div>
+      <div class="hobby-desc">Experimenting with visuals, layouts, and digital aesthetics.</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <div class="hobby-name">Modern Technologies</div>
+      <div class="hobby-desc">Staying curious about new tools, frameworks, and creative tech.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTTO -->
+<section class="motto-section s-glass">
+  <div class="motto-line"></div>
+  <div class="motto-glass">
+    <p class="motto-text">
+      "Creating with <em>intention</em>, designing with <em>emotion</em>, and building experiences that leave an <em>impact</em>."
+    </p>
+    <div class="motto-line" style="margin-top:1.5rem;"></div>
+    <div class="motto-attr">— Guru Aishwarya R</div>
+  </div>
+  <div class="motto-line"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-label">05 / Contact</div>
+  <h2 class="s-heading">Let's create<br/><em>something beautiful.</em></h2>
+
+  <div class="contact-layout">
+    <div>
+      <p class="contact-intro">Open to design collaborations, creative projects, and conversations where technology and aesthetics meet.</p>
+      <div class="social-cards">
+        <a href="https://www.linkedin.com/in/guruaishwarya/" class="social-card" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <div class="sc-info">
+            <div class="sc-name">LinkedIn</div>
+            <div class="sc-handle">guruaishwarya</div>
+          </div>
+          <span class="sc-arrow">→</span>
+        </a>
+        <a href="https://github.com/GuruAishwarya" class="social-card" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div class="sc-info">
+            <div class="sc-name">GitHub</div>
+            <div class="sc-handle">GuruAishwarya</div>
+          </div>
+          <span class="sc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="id-glass">
+        <div class="id-avatar">
+          <!-- REPLACE WITH: <img src="guru-aishwarya-photo.jpg" alt="Guru Aishwarya R"/> -->
+          GA
+        </div>
+        <div class="id-name">Guru Aishwarya R</div>
+        <div class="id-role">Designer · Developer · Araneri</div>
+        <div class="id-motto">
+          "Creating with intention, designing with emotion, and building experiences that leave an impact."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-l">Guru Aishwarya R &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Araneri</div>
+  <div class="footer-r">Designed with intention.</div>
+</footer>
+
+<script>
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+function init(){
+  stars = [];
+  const n = Math.floor(canvas.width * canvas.height / 5000);
+  for(let i=0;i<n;i++){
+    stars.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*0.9+0.1,
+      a: Math.random()*0.6+0.2,
+      sp: Math.random()*0.004+0.001,
+      ph: Math.random()*Math.PI*2
+    });
+  }
+}
+function draw(t){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    const a = (Math.sin(t*s.sp+s.ph)*0.35+0.65)*s.a;
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle = `rgba(243,182,214,${a * 0.6})`;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle = `rgba(240,237,248,${a * 0.4})`;
+    ctx.fill();
+  });
+}
+let raf;
+function loop(t){ draw(t); raf = requestAnimationFrame(loop); }
+resize(); init(); loop(0);
+window.addEventListener('resize',()=>{ resize(); init(); });
+</script>
+</body>
+</html>
