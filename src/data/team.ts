@@ -64,7 +64,12 @@ export const team: readonly TeamMember[] = [
     name: "Mahaswetha",
     role: "Digital Curator",
     description: "Organizes personal work into clear and memorable narratives.",
-    image: imagePlaceholders.butterflies,
+    image: {
+      src: "/team/mahaswetha/mahaswetha.png",
+      alt: "Mahaswetha profile photo",
+      width: 433,
+      height: 576,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Mahaswetha.html`,
   },
   {
