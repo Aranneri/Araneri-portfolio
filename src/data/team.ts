@@ -144,4 +144,18 @@ export const team: readonly TeamMember[] = [
     image: imagePlaceholders.iceApple,
     portfolioUrl: `${portfolioBaseUrl}/Shrijesh.html`,
   },
+  {
+    name: "Arsath",
+    role: "Portfolio Contributor",
+    description: "Adds crafted portfolio work and thoughtful pages.",
+    image: imagePlaceholders.palmRoots,
+    portfolioUrl: `${portfolioBaseUrl}/Arsath.html`,
+  },
+  {
+    name: "Rubini",
+    role: "Portfolio Contributor",
+    description: "Contributed a new portfolio showcasing creative work.",
+    image: imagePlaceholders.palmSeeds,
+    portfolioUrl: `${portfolioBaseUrl}/Rubini.html`,
+  },
 ];

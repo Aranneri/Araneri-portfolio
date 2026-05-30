@@ -16,7 +16,8 @@ export function TeamCard({ member }: TeamCardProps) {
         alt={member.image.alt}
         width={member.image.width}
         height={member.image.height}
-        className="h-40 w-full rounded-[var(--radius-md)] object-cover"
+        wrapperClassName="w-full rounded-[var(--radius-md)] overflow-hidden"
+        className="max-w-full h-auto mx-auto block"
       />
       <CardHeader>
         <CardTitle>{member.name}</CardTitle>
