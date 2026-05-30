@@ -15,7 +15,12 @@ export const team: readonly TeamMember[] = [
     name: "Ezhiloviya",
     role: "Visual Storyteller",
     description: "Shapes graceful interfaces with a strong eye for detail.",
-    image: imagePlaceholders.palmCrafts,
+    image: {
+      src: "/team/ezhiloviya/ezhiloviya.png",
+      alt: "Ezhiloviya profile photo",
+      width: 403,
+      height: 543,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Ezhiloviya.html`,
   },
   {
@@ -29,7 +34,12 @@ export const team: readonly TeamMember[] = [
     name: "Hariprasath",
     role: "Web Craftsman",
     description: "Turns ideas into focused, usable digital experiences.",
-    image: imagePlaceholders.palmRoots,
+    image: {
+      src: "/team/hariprasath/hariprasath.png",
+      alt: "Hariprasath profile photo",
+      width: 231,
+      height: 295,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Hariprasath.html`,
   },
   {
@@ -50,7 +60,12 @@ export const team: readonly TeamMember[] = [
     name: "Kishore",
     role: "Frontend Maker",
     description: "Builds polished interactions with steady technical care.",
-    image: imagePlaceholders.iceApple,
+    image: {
+      src: "/team/kishore/kishore.png",
+      alt: "Kishore profile photo",
+      width: 532,
+      height: 535,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Kishore.html`,
   },
   {
@@ -67,8 +82,8 @@ export const team: readonly TeamMember[] = [
     image: {
       src: "/team/mahaswetha/mahaswetha.png",
       alt: "Mahaswetha profile photo",
-      width: 433,
-      height: 576,
+      width: 439,
+      height: 580,
     },
     portfolioUrl: `${portfolioBaseUrl}/Mahaswetha.html`,
   },
@@ -76,21 +91,36 @@ export const team: readonly TeamMember[] = [
     name: "Murugesan",
     role: "Product Thinker",
     description: "Connects practical problem solving with careful presentation.",
-    image: imagePlaceholders.palmCrafts,
+    image: {
+      src: "/team/murugesan/murugesan.png",
+      alt: "Murugesan profile photo",
+      width: 468,
+      height: 571,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Murugesan.html`,
   },
   {
     name: "Niranjanaa",
     role: "Design Researcher",
     description: "Brings observation, structure, and craft into every page.",
-    image: imagePlaceholders.palmLeaves,
+    image: {
+      src: "/team/niranjanaa/niranjanaa.png",
+      alt: "Niranjanaa profile photo",
+      width: 429,
+      height: 571,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Niranjanaa.html`,
   },
   {
     name: "Pavithra",
     role: "Creative Developer",
     description: "Builds expressive portfolio moments with a clean digital touch.",
-    image: imagePlaceholders.palmRoots,
+    image: {
+      src: "/team/pavithra/pavithra.png",
+      alt: "Pavithra profile photo",
+      width: 394,
+      height: 573,
+    },
     portfolioUrl: `${portfolioBaseUrl}/Pavithra.html`,
   },
   {
